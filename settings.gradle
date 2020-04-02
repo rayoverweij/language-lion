@@ -1,0 +1,2 @@
+rootProject.name='The Language Lion'
+include ':app'
