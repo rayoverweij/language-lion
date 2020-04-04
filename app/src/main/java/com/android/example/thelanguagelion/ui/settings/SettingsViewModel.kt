@@ -1,13 +1,13 @@
-package com.android.example.thelanguagelion.ui.dashboard
+package com.android.example.thelanguagelion.ui.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class SettingsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "Here will be some settings!"
     }
     val text: LiveData<String> = _text
 }
