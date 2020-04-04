@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme -->
+    <!-- Base application theme for API 27+ -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Set theme colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,5 +9,8 @@
         <!-- Set app background -->
         <item name="android:windowBackground">@color/colorWhite</item>
         <item name="android:colorBackground">@color/colorWhite</item>
+        <!-- White navigation bar -->
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 </resources>
