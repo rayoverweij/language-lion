@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.NavHostFragment
 import com.android.example.thelanguagelion.R
 import com.android.example.thelanguagelion.databinding.FragmentLessonBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class LessonFragment : Fragment() {
     private lateinit var binding: FragmentLessonBinding
@@ -21,6 +22,11 @@ class LessonFragment : Fragment() {
 
         binding.lessonViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        binding.buttonCheck.setOnClickListener {
+            viewModel.onCheck(binding.editAnswer.text.toString())
+            binding.editAnswer.setText("")
+        }
 
         return binding.root
     }
