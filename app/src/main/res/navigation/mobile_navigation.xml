@@ -9,7 +9,12 @@
         android:id="@+id/navigation_home"
         android:name="com.android.example.thelanguagelion.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_lesson"
+            app:destination="@id/navigation_lesson"
+            app:launchSingleTop="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notebook"
@@ -22,4 +27,27 @@
         android:name="com.android.example.thelanguagelion.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_lesson"
+        android:name="com.android.example.thelanguagelion.ui.lesson.LessonFragment"
+        android:label="LessonFragment" >
+        <action
+            android:id="@+id/action_navigation_lesson_to_navigation_score"
+            app:destination="@id/navigation_score"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_score"
+        android:name="com.android.example.thelanguagelion.ui.score.ScoreFragment"
+        android:label="ScoreFragment" >
+        <action
+            android:id="@+id/action_navigation_score_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <argument
+            android:name="score"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>
