@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<semanticon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sem>
+		<id>S0010000</id>
+		<name>greeting_quick</name>
+		<english>hi,hey</english>
+		<dutch>hoi</dutch>
+	</sem>
+	<sem>
+		<id>S0010001</id>
+		<name>greeting</name>
+		<english>hello</english>
+		<dutch>hallo</dutch>
+	</sem>
+	<sem>
+		<id>S0010002</id>
+		<name>bye_quick</name>
+		<english>bye</english>
+		<dutch>dag</dutch>
+	</sem>
+	<sem>
+		<id>S0010003</id>
+		<name>bye_informal</name>
+		<english>see you,see ya</english>
+		<dutch>doei,tot ziens</dutch>
+	</sem>
+	<sem>
+		<id>S0010004</id>
+		<name>cheers</name>
+		<english>cheers</english>
+		<dutch>proost</dutch>
+	</sem>
+	<sem>
+		<id>S0010005</id>
+		<name>goodmorning</name>
+		<english>good morning</english>
+		<dutch>goedemorgen</dutch>
+	</sem>
+	<sem>
+		<id>S0010006</id>
+		<name>goodafternoon</name>
+		<english>good afternoon</english>
+		<dutch>goedemiddag</dutch>
+	</sem>
+	<sem>
+		<id>S0010007</id>
+		<name>goodevening</name>
+		<english>good evening</english>
+		<dutch>goedenavond</dutch>
+	</sem>
+	<sem>
+		<id>S0010008</id>
+		<name>goodnight</name>
+		<english>good night</english>
+		<dutch>goedenacht</dutch>
+	</sem>
+	<sem>
+		<id>S0010009</id>
+		<name>yes</name>
+		<english>yes</english>
+		<dutch>ja</dutch>
+	</sem>
+	<sem>
+		<id>S0010010</id>
+		<name>no</name>
+		<english>no</english>
+		<dutch>nee</dutch>
+	</sem>
+	<sem>
+		<id>S0010011</id>
+		<name>please</name>
+		<english>please</english>
+		<dutch>alsjeblieft,alstublieft</dutch>
+	</sem>
+	<sem>
+		<id>S0010012</id>
+		<name>thanks</name>
+		<english>thanks,thank you</english>
+		<dutch>dank je,dank u,dank je wel,dank u wel</dutch>
+	</sem>
+	<sem>
+		<id>S0010013</id>
+		<name>sorry</name>
+		<english>I'm sorry</english>
+		<dutch>het spijt me</dutch>
+	</sem>
+	<sem>
+		<id>S0010014</id>
+		<name>excuseme</name>
+		<english>excuse me,pardon me</english>
+		<dutch>pardon</dutch>
+	</sem>
+	<sem>
+		<id>S0010015</id>
+		<name>okay</name>
+		<english>okay,ok</english>
+		<dutch>oké,ok</dutch>
+	</sem>
+	<sem>
+		<id>S0010016</id>
+		<name>sleepwell</name>
+		<english>sleep well</english>
+		<dutch>welterusten,slaap lekker</dutch>
+	</sem>
+	<sem>
+		<id>S0010017</id>
+		<name>ofcourse</name>
+		<english>of course</english>
+		<dutch>natuurlijk</dutch>
+	</sem>
+	<sem>
+		<id>S0010018</id>
+		<name>allright</name>
+		<english>all right?,you all right?</english>
+		<dutch>alles goed?</dutch>
+	</sem>
+	<sem>
+		<id>S0010019</id>
+		<name>howareyou</name>
+		<english>how are you?</english>
+		<dutch>hoe gaat het?,hoe gaat het met jou?,hoe gaat het met u?</dutch>
+	</sem>
+	<sem>
+		<id>S0011000</id>
+		<name>canihave</name>
+		<english>can I have</english>
+		<dutch>mag ik</dutch>
+	</sem>
+	<sem>
+		<id>S0011001</id>
+		<name>iwouldlike</name>
+		<english>I would like</english>
+		<dutch>ik heb graag</dutch>
+	</sem>
+	<sem>
+		<id>S0020000</id>
+		<name>the</name>
+		<english>the</english>
+		<dutch>de,het</dutch>
+	</sem>
+	<sem>
+		<id>S0020001</id>
+		<name>a</name>
+		<english>a</english>
+		<dutch>een</dutch>
+	</sem>
+	<sem>
+		<id>S0021000</id>
+		<name>i</name>
+		<english>I</english>
+		<dutch>ik</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021001</id>
+		<name>me</name>
+		<english>me</english>
+		<dutch>mij,me</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021002</id>
+		<name>you_sub</name>
+		<english>you</english>
+		<dutch>jij,je</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021003</id>
+		<name>you_obj</name>
+		<english>you</english>
+		<dutch>jou,u</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021004</id>
+		<name>he</name>
+		<english>he</english>
+		<dutch>hij</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021005</id>
+		<name>him</name>
+		<english>him</english>
+		<dutch>hem</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021006</id>
+		<name>she</name>
+		<english>she</english>
+		<dutch>zij,ze</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021007</id>
+		<name>her</name>
+		<english>her</english>
+		<dutch>haar</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021008</id>
+		<name>it</name>
+		<english>it</english>
+		<dutch>het</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021009</id>
+		<name>we</name>
+		<english>we</english>
+		<dutch>wij,we</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021010</id>
+		<name>us</name>
+		<english>us</english>
+		<dutch>ons</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021011</id>
+		<name>you_plu</name>
+		<english>you</english>
+		<dutch>jullie</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021012</id>
+		<name>they</name>
+		<english>they</english>
+		<dutch>zij,ze</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0021013</id>
+		<name>them</name>
+		<english>them</english>
+		<dutch>hen,hun</dutch>
+		<categories>
+			<pers_pron />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0022000</id>
+		<name>not</name>
+		<english>not,no</english>
+		<dutch>geen,niet</dutch>
+	</sem>
+	<sem>
+		<id>S0023000</id>
+		<name>and</name>
+		<english>and</english>
+		<dutch>en</dutch>
+	</sem>
+	<sem>
+		<id>S0023001</id>
+		<name>or</name>
+		<english>or</english>
+		<dutch>of</dutch>
+	</sem>
+	<sem>
+		<id>S0023002</id>
+		<name>but</name>
+		<english>but</english>
+		<dutch>maar</dutch>
+	</sem>
+	<sem>
+		<id>S0023003</id>
+		<name>also</name>
+		<english>also,as well</english>
+		<dutch>or</dutch>
+	</sem>
+	<sem>
+		<id>S0024000</id>
+		<name>in</name>
+		<english>in</english>
+		<dutch>in</dutch>
+	</sem>
+	<sem>
+		<id>S0030000</id>
+		<name>be</name>
+		<english>be</english>
+		<dutch>zijn</dutch>
+		<categories>
+			<verb_transitive />
+			<verb_intransitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0030001</id>
+		<name>have</name>
+		<english>have</english>
+		<dutch>hebben</dutch>
+		<categories>
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031000</id>
+		<name>be_called</name>
+		<english>be called</english>
+		<dutch>heten</dutch>
+		<categories>
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031001</id>
+		<name>eat</name>
+		<english>eat</english>
+		<dutch>eten</dutch>
+		<categories>
+			<verb_intransitive />
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031002</id>
+		<name>drink</name>
+		<english>drink</english>
+		<dutch>drinken</dutch>
+		<categories>
+			<verb_intransitive />
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031003</id>
+		<name>speak</name>
+		<english>speak</english>
+		<dutch>spreken</dutch>
+		<categories>
+			<verb_intransitive />
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031004</id>
+		<name>go</name>
+		<english>go</english>
+		<dutch>gaan</dutch>
+		<categories>
+			<verb_intransitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031005</id>
+		<name>walk</name>
+		<english>walk</english>
+		<dutch>lopen</dutch>
+		<categories>
+			<verb_intransitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031006</id>
+		<name>run</name>
+		<english>run</english>
+		<dutch>rennen</dutch>
+		<categories>
+			<verb_intransitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031007</id>
+		<name>cycle</name>
+		<english>cycle,bike</english>
+		<dutch>fietsen</dutch>
+		<categories>
+			<verb_intransitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031008</id>
+		<name>help</name>
+		<english>help</english>
+		<dutch>helpen</dutch>
+		<categories>
+			<verb_intransitive />
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031009</id>
+		<name>read</name>
+		<english>read</english>
+		<dutch>lezen</dutch>
+		<categories>
+			<verb_intransitive />
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031010</id>
+		<name>live_in</name>
+		<english>live</english>
+		<dutch>wonen</dutch>
+		<categories>
+			<verb_transitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0031011</id>
+		<name>live_alive</name>
+		<english>live</english>
+		<dutch>leven</dutch>
+		<categories>
+			<verb_intransitive />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0040000</id>
+		<name>man</name>
+		<english>man</english>
+		<dutch>man</dutch>
+		<categories>
+			<person />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0040001</id>
+		<name>woman</name>
+		<english>woman</english>
+		<dutch>vrouw</dutch>
+		<categories>
+			<person />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0040002</id>
+		<name>boy</name>
+		<english>boy</english>
+		<dutch>jongen</dutch>
+		<categories>
+			<person />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0040003</id>
+		<name>girl</name>
+		<english>girl</english>
+		<dutch>meisje</dutch>
+		<categories>
+			<person />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0040004</id>
+		<name>child</name>
+		<english>child,kid</english>
+		<dutch>kind</dutch>
+		<categories>
+			<person />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041000</id>
+		<name>apple</name>
+		<english>apple</english>
+		<dutch>appel</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041001</id>
+		<name>banana</name>
+		<english>banana</english>
+		<dutch>banaan</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041002</id>
+		<name>strawberry</name>
+		<english>strawberry</english>
+		<dutch>aardbei</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041003</id>
+		<name>slice_bread</name>
+		<english>slice of bread</english>
+		<dutch>boterham</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041004</id>
+		<name>bread</name>
+		<english>bread</english>
+		<dutch>brood</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041005</id>
+		<name>cheese</name>
+		<english>cheese</english>
+		<dutch>kaas</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041006</id>
+		<name>soup</name>
+		<english>soup</english>
+		<dutch>soep</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041007</id>
+		<name>pasta</name>
+		<english>pasta</english>
+		<dutch>pasta</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041008</id>
+		<name>breakfast</name>
+		<english>breakfast</english>
+		<dutch>ontbijt</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041009</id>
+		<name>lunch</name>
+		<english>lunch</english>
+		<dutch>lunch</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041010</id>
+		<name>dinner</name>
+		<english>dinner</english>
+		<dutch>avondeten</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041011</id>
+		<name>chicken</name>
+		<english>chicken</english>
+		<dutch>kip</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041012</id>
+		<name>fruit</name>
+		<english>fruit</english>
+		<dutch>fruit</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041013</id>
+		<name>vegetable</name>
+		<english>vegetable</english>
+		<dutch>groente</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041014</id>
+		<name>egg</name>
+		<english>egg</english>
+		<dutch>ei</dutch>
+		<categories>
+			<food_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041015</id>
+		<name>water</name>
+		<english>water</english>
+		<dutch>water</dutch>
+		<categories>
+			<drink_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041016</id>
+		<name>milk</name>
+		<english>milk</english>
+		<dutch>melk</dutch>
+		<categories>
+			<drink_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041017</id>
+		<name>juice</name>
+		<english>juice</english>
+		<dutch>sap</dutch>
+		<categories>
+			<drink_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041018</id>
+		<name>coffee</name>
+		<english>coffee</english>
+		<dutch>koffie</dutch>
+		<categories>
+			<drink_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041019</id>
+		<name>tea</name>
+		<english>tea</english>
+		<dutch>thee</dutch>
+		<categories>
+			<drink_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041020</id>
+		<name>beer</name>
+		<english>beer</english>
+		<dutch>bier</dutch>
+		<categories>
+			<drink_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0041021</id>
+		<name>wine</name>
+		<english>wine</english>
+		<dutch>wijn</dutch>
+		<categories>
+			<drink_item />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0042000</id>
+		<name>menu</name>
+		<english>menu</english>
+		<dutch>menu,kaart</dutch>
+		<categories>
+			<readable />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0042001</id>
+		<name>book</name>
+		<english>book</english>
+		<dutch>boek</dutch>
+		<categories>
+			<readable />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0042002</id>
+		<name>newspaper</name>
+		<english>newspaper</english>
+		<dutch>krant</dutch>
+		<categories>
+			<readable />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0043000</id>
+		<name>netherlands</name>
+		<english>The Netherlands</english>
+		<dutch>Nederland</dutch>
+		<categories>
+			<country />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0043001</id>
+		<name>belgium</name>
+		<english>Belgium</english>
+		<dutch>België</dutch>
+		<categories>
+			<country />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0050000</id>
+		<name>good</name>
+		<english>good</english>
+		<dutch>goed</dutch>
+		<categories>
+			<people_descriptor />
+			<food_descriptor />
+			<drink_descriptor />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0050001</id>
+		<name>bad</name>
+		<english>bad</english>
+		<dutch>slecht</dutch>
+		<categories>
+			<people_descriptor />
+			<food_descriptor />
+			<drink_descriptor />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0050002</id>
+		<name>tasty</name>
+		<english>tasty</english>
+		<dutch>lekker</dutch>
+		<categories>
+			<food_descriptor />
+			<drink_descriptor />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0051000</id>
+		<name>dutch</name>
+		<english>Dutch</english>
+		<dutch>Nederlands</dutch>
+		<categories>
+			<language />
+			<nationality />
+		</categories>
+	</sem>
+	<sem>
+		<id>S0051001</id>
+		<name>english</name>
+		<english>English</english>
+		<dutch>Engels</dutch>
+		<categories>
+			<language />
+			<nationality />
+		</categories>
+	</sem>
+</semanticon>

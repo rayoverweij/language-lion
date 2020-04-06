@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.android.example.thelanguagelion.R
 import com.android.example.thelanguagelion.databinding.FragmentLessonBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class LessonFragment : Fragment() {
@@ -26,6 +26,18 @@ class LessonFragment : Fragment() {
         binding.buttonCheck.setOnClickListener {
             viewModel.onCheck(binding.editAnswer.text.toString())
             binding.editAnswer.setText("")
+        }
+
+        // Also check the answer if the enter key is pressed
+        binding.editAnswer.setOnEditorActionListener { _, actionId, _ ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEND -> {
+                    viewModel.onCheck(binding.editAnswer.text.toString())
+                    binding.editAnswer.setText("")
+                    true
+                }
+                else -> false
+            }
         }
 
         return binding.root
