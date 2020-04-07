@@ -33,7 +33,6 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
         private const val DONE = 0L
         private const val ONE_SECOND = 1000L
         private const val ONE_MINUTE = 60000L
-
     }
 
     private var _exercise = MutableLiveData<String>()
@@ -47,6 +46,10 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
     private var _score = MutableLiveData<Int>()
     val score: LiveData<Int>
         get() = _score
+
+    private var _eventLessonFinish = MutableLiveData<Boolean>()
+    val eventLessonFinish: LiveData<Boolean>
+        get() = _eventLessonFinish
 
 
     init {
@@ -84,12 +87,12 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun nextExercise() {
-        if(!wordList.isEmpty()) {
+        if(wordList.isNotEmpty()) {
             currSem = wordList.removeAt(0)
             _exercise.value = currSem.english[0]
             _answer.value = currSem.dutch[0]
         } else {
-            _exercise.value = "Done!"
+            onLessonFinish()
         }
     }
 
@@ -100,6 +103,15 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
         }
         nextExercise()
     }
+
+    fun onLessonFinish() {
+        _eventLessonFinish.value = true
+    }
+
+    fun onLessonFinishComplete() {
+        _eventLessonFinish.value = false
+    }
+
 
     @Throws(IOException::class)
     fun getFileFromAssets(fileName: String): File = File(context.cacheDir, fileName)

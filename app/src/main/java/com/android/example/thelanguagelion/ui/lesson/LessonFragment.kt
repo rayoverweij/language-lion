@@ -1,13 +1,17 @@
 package com.android.example.thelanguagelion.ui.lesson
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment
 import com.android.example.thelanguagelion.R
 import com.android.example.thelanguagelion.databinding.FragmentLessonBinding
 
@@ -40,9 +44,17 @@ class LessonFragment : Fragment() {
             }
         }
 
+        viewModel.eventLessonFinish.observe(viewLifecycleOwner, Observer<Boolean> { hasFinished ->
+            if (hasFinished) lessonFinished()
+        })
+
         return binding.root
     }
 
     private fun lessonFinished() {
+        val action = LessonFragmentDirections.actionNavigationLessonToNavigationScore()
+        action.score = viewModel.score.value ?: 0
+        NavHostFragment.findNavController(this).navigate(action)
+        viewModel.onLessonFinishComplete()
     }
 }

@@ -1,12 +1,14 @@
 package com.android.example.thelanguagelion.ui.score
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.android.example.thelanguagelion.R
 import com.android.example.thelanguagelion.databinding.FragmentScoreBinding
 
@@ -22,6 +24,10 @@ class ScoreFragment : Fragment() {
 
         binding.scoreViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        binding.buttonFinish.setOnClickListener {
+            findNavController().navigate(ScoreFragmentDirections.actionNavigationScoreToNavigationHome())
+        }
 
         return binding.root
     }
