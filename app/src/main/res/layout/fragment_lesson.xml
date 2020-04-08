@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="96dp"
             android:text="Don't know"
+            style="?attr/materialButtonOutlinedStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_check"
             app:layout_constraintHorizontal_bias="0.5"
