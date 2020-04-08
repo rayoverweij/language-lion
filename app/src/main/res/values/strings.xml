@@ -6,4 +6,7 @@
     <string name="button_practice">Practice!</string>
     <string name="score_title">Well done!\nYour score is</string>
     <string name="button_finish">Finish up</string>
+    <string name="button_continue">Continue</string>
+    <string name="button_dontknow">Don\'t know</string>
+    <string name="button_check">Check</string>
 </resources>

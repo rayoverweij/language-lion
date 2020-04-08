@@ -1,12 +1,10 @@
 package com.android.example.thelanguagelion.ui.lesson
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import simplenlg.framework.NLGFactory
 import simplenlg.framework.SemElement
 import simplenlg.realiser.Realiser
@@ -47,6 +45,10 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
     val score: LiveData<Int>
         get() = _score
 
+    private var _lessonStatus = MutableLiveData<LessonStatus>()
+    val lessonStatus: LiveData<LessonStatus>
+        get() = _lessonStatus
+
     private var _eventLessonFinish = MutableLiveData<Boolean>()
     val eventLessonFinish: LiveData<Boolean>
         get() = _eventLessonFinish
@@ -57,6 +59,7 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
         _exercise.value = "loading..."
         _answer.value = ""
         _score.value = 0
+        _lessonStatus.value = LessonStatus.INPROGRESS
 
         val semanticonPath = getFileFromAssets("semanticon.xml").absolutePath
         val englishLexPath = getFileFromAssets("english-lexicon.xml").absolutePath
@@ -79,18 +82,19 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
 
 
     private fun createList() {
-        val sems_food_items = semanticon.getSemsInCategory("food_item")
-        Log.i("LessonViewModel", sems_food_items.toString())
+        val semsFoodItems = semanticon.getSemsInCategory("food_item")
+        Log.i("LessonViewModel", semsFoodItems.toString())
 
-        wordList = sems_food_items.toMutableList()
+        wordList = semsFoodItems.toMutableList()
         wordList.shuffle()
     }
 
-    private fun nextExercise() {
+    fun nextExercise() {
         if(wordList.isNotEmpty()) {
             currSem = wordList.removeAt(0)
             _exercise.value = currSem.english[0]
             _answer.value = currSem.dutch[0]
+            _lessonStatus.value = LessonStatus.INPROGRESS
         } else {
             onLessonFinish()
         }
@@ -99,10 +103,26 @@ class LessonViewModel(application: Application) : AndroidViewModel(application) 
     fun onCheck(answer: String) {
         Log.i("LessonViewModel", "Exercise: ${_answer.value} - answer: $answer - equals: ${_answer.value == answer}")
         if(_answer.value == answer) {
-            _score.value = (score.value)?.plus(1)
+            correctAnswer()
+        } else {
+            incorrectAnswer()
         }
-        nextExercise()
     }
+
+    fun dontKnow() {
+        incorrectAnswer()
+    }
+
+
+    private fun correctAnswer() {
+        _score.value = (score.value)?.plus(1)
+        _lessonStatus.value = LessonStatus.CORRECT
+    }
+
+    private fun incorrectAnswer() {
+        _lessonStatus.value = LessonStatus.INCORRECT
+    }
+
 
     fun onLessonFinish() {
         _eventLessonFinish.value = true

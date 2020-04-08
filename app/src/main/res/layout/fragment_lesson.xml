@@ -40,9 +40,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            android:backgroundTint="@color/colorPrimary"
             android:ems="10"
-            android:inputType="textNoSuggestions"
             android:imeOptions="actionSend"
+            android:inputType="textNoSuggestions"
+            android:textCursorDrawable="@drawable/color_cursor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +52,11 @@
 
         <Button
             android:id="@+id/button_dontknow"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="96dp"
-            android:text="Don't know"
-            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/button_dontknow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_check"
             app:layout_constraintHorizontal_bias="0.5"
@@ -65,10 +67,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="96dp"
-            android:text="Check"
+            android:text="@string/button_check"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_dontknow" />
+
+        <Button
+            android:id="@+id/button_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_continue"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_answer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
