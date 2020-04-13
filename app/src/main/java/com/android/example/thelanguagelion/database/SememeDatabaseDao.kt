@@ -17,9 +17,12 @@ interface SememeDatabaseDao {
     @Query("SELECT * FROM sememe_table WHERE sememeId = :key")
     fun get(key: Int): Sememe?
 
-    @Query("DELETE FROM sememe_table")
-    fun clear()
+    @Query("SELECT * FROM sememe_table")
+    fun getAll(): LiveData<List<Sememe>>
 
     @Query("SELECT * FROM sememe_table WHERE learned = 1")
     fun getAllLearned(): LiveData<List<Sememe>>
+
+    @Query("DELETE FROM sememe_table")
+    fun clear()
 }

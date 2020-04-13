@@ -9,12 +9,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.android.example.thelanguagelion.database.SememeDatabaseDao
+import com.android.example.thelanguagelion.getFileFromAssets
 import simplenlg.framework.NLGFactory
 import simplenlg.framework.SemElement
 import simplenlg.realiser.Realiser
 import simplenlg.semantics.Semanticon
-import java.io.File
-import java.io.IOException
 import simplenlg.lexicon.dutch.XMLLexicon as dutchXMLLexicon
 import simplenlg.lexicon.english.XMLLexicon as englishXMLLexicon
 
@@ -81,9 +80,9 @@ class LessonViewModel(val database: SememeDatabaseDao, application: Application)
         _score.value = 0
         _lessonStatus.value = LessonStatus.INPROGRESS
 
-        val semanticonPath = getFileFromAssets("semanticon.xml").absolutePath
-        val englishLexPath = getFileFromAssets("english-lexicon.xml").absolutePath
-        val dutchLexPath = getFileFromAssets("dutch-lexicon.xml").absolutePath
+        val semanticonPath = getFileFromAssets("semanticon.xml", context).absolutePath
+        val englishLexPath = getFileFromAssets("english-lexicon.xml", context).absolutePath
+        val dutchLexPath = getFileFromAssets("dutch-lexicon.xml", context).absolutePath
 
         semanticon = Semanticon(semanticonPath)
         englishLexicon = englishXMLLexicon(englishLexPath)
@@ -166,15 +165,4 @@ class LessonViewModel(val database: SememeDatabaseDao, application: Application)
     fun onLessonFinishComplete() {
         _eventLessonFinish.value = false
     }
-
-
-    @Throws(IOException::class)
-    fun getFileFromAssets(fileName: String): File = File(context.cacheDir, fileName)
-        .also {
-            it.outputStream().use { cache ->
-                context.assets.open(fileName).use {
-                    it.copyTo(cache)
-                }
-            }
-        }
 }
