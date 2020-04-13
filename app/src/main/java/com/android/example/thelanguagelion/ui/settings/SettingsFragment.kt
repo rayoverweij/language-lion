@@ -4,28 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.example.thelanguagelion.R
+import com.android.example.thelanguagelion.database.SememeDatabase
+import com.android.example.thelanguagelion.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
+    private lateinit var binding: FragmentSettingsBinding
+    private lateinit var viewModel: SettingsViewModel
+    private lateinit var viewModelFactory: SettingsViewModelFactory
 
-    private lateinit var settingsViewModel: SettingsViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+        val application = requireNotNull(this.activity).application
+        val dataSource = SememeDatabase.getInstance(application).sememeDatabaseDao
+        viewModelFactory = SettingsViewModelFactory(dataSource, application)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SettingsViewModel::class.java)
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        settingsViewModel =
-                ViewModelProviders.of(this).get(SettingsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_settings, container, false)
-        val textView: TextView = root.findViewById(R.id.text_settings)
-        settingsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        binding.settingsViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
     }
 }

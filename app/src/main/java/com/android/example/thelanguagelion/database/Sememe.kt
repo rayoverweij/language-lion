@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "sememe_table")
 data class Sememe(
     @PrimaryKey(autoGenerate = false)
-    var sememeId: Int = 0,
+    var sememeId: String = "",
 
     @ColumnInfo(name = "learned")
     var learned: Int = 0,

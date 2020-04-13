@@ -1,13 +1,35 @@
 package com.android.example.thelanguagelion.ui.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.android.example.thelanguagelion.database.Sememe
+import com.android.example.thelanguagelion.database.SememeDatabaseDao
+import kotlinx.coroutines.*
 
-class SettingsViewModel : ViewModel() {
+class SettingsViewModel(val database: SememeDatabaseDao, application: Application) : AndroidViewModel(application) {
+    private var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "Here will be some settings!"
+    fun resetProgress() {
+        uiScope.launch {
+            resetDatabase()
+        }
     }
-    val text: LiveData<String> = _text
+
+    private suspend fun resetDatabase() {
+        withContext(Dispatchers.IO) {
+            database.clear()
+
+            database.insert(Sememe("S0010000"))
+            database.insert(Sememe("S0010001"))
+            database.insert(Sememe("S0010002"))
+            database.insert(Sememe("S0010003"))
+            database.insert(Sememe("S0010004"))
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }

@@ -9,4 +9,7 @@
     <string name="button_continue">Continue</string>
     <string name="button_dontknow">Don\'t know</string>
     <string name="button_check">Check</string>
+    <string name="settings_reset">Reset progress</string>
+    <string name="button_reset">Reset</string>
+    <string name="settings_reset_warning">Warning! All your progress will be permanently lost. This process cannot be undone!</string>
 </resources>
