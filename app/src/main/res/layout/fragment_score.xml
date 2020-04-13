@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
@@ -19,6 +18,8 @@
             android:layout_height="wrap_content"
             android:text="@string/score_title"
             android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/score_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -30,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{scoreViewModel.score.toString()}"
+            android:textColor="@color/colorBlack"
             android:textSize="54sp"
             app:layout_constraintBottom_toTopOf="@+id/button_finish"
             app:layout_constraintEnd_toEndOf="parent"

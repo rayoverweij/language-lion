@@ -12,4 +12,6 @@
     <string name="settings_reset">Reset progress</string>
     <string name="button_reset">Reset</string>
     <string name="settings_reset_warning">Warning! All your progress will be permanently lost. This process cannot be undone!</string>
+    <string name="settings_header">Settings</string>
+    <string name="notebook_header">Notebook</string>
 </resources>

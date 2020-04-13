@@ -41,6 +41,10 @@ class LessonViewModel(val database: SememeDatabaseDao, application: Application)
         private const val TEN_MINUTES = 600000L
     }
 
+    private var _task = MutableLiveData<String>()
+    val task: LiveData<String>
+        get() = _task
+
     private var _exercise = MutableLiveData<String>()
     val exercise: LiveData<String>
         get() = _exercise
@@ -71,7 +75,8 @@ class LessonViewModel(val database: SememeDatabaseDao, application: Application)
 
 
     init {
-        _exercise.value = "loading..."
+        _task.value = ""
+        _exercise.value = ""
         _answer.value = ""
         _score.value = 0
         _lessonStatus.value = LessonStatus.INPROGRESS
@@ -121,6 +126,7 @@ class LessonViewModel(val database: SememeDatabaseDao, application: Application)
     fun nextExercise() {
         if(wordList.isNotEmpty()) {
             currSem = wordList.removeAt(0)
+            _task.value = "Translate to Dutch"
             _exercise.value = currSem.english[0]
             _answer.value = currSem.dutch[0]
             _lessonStatus.value = LessonStatus.INPROGRESS
