@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Don't display the navigation bar during a lesson or score screen
+        // Don't display the navigation bar during a lesson and at the welcome and score screens
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if(nd.id == R.id.navigation_lesson || nd.id == R.id.navigation_score) {
+            if(nd.id == R.id.navigation_welcome || nd.id == R.id.navigation_lesson || nd.id == R.id.navigation_score) {
                 navView.visibility = View.GONE
             } else {
                 navView.visibility = View.VISIBLE

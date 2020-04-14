@@ -3,6 +3,7 @@ package com.android.example.thelanguagelion.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "profile_table")
 data class Profile(
@@ -13,8 +14,8 @@ data class Profile(
     var username: String = "",
 
     @ColumnInfo(name = "primaryQueue")
-    var primaryQueue: List<String> = mutableListOf(),
+    var primaryQueue: LinkedList<String> = LinkedList(),
 
     @ColumnInfo(name = "secondaryQueue")
-    var secondaryQueue: List<String> = mutableListOf()
+    var secondaryQueue: LinkedList<String> = LinkedList()
 )

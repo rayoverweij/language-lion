@@ -14,4 +14,8 @@
     <string name="settings_reset_warning">Warning! All your progress will be permanently lost. This process cannot be undone!</string>
     <string name="settings_header">Settings</string>
     <string name="notebook_header">Notebook</string>
+    <string name="welcome_title">Welcome!</string>
+    <string name="welcome_lead">Learn Dutch with the Language Lion! Enter your name to get started.</string>
+    <string name="edit_name">Enter your name</string>
+    <string name="button_welcome">Start</string>
 </resources>

@@ -29,4 +29,9 @@
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">24sp</item>
     </style>
+
+    <style name="edittext_orange">
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:textCursorDrawable">@drawable/color_cursor</item>
+    </style>
 </resources>

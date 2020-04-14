@@ -20,15 +20,20 @@ interface StudentDatabaseDao {
     @Update
     fun update(profile: Profile)
 
+
     @Query("SELECT * FROM sememe_table WHERE sememeId = :key")
-    fun get(key: Int): Sememe?
+    fun getSememe(key: Int): Sememe?
 
     @Query("SELECT * FROM sememe_table")
-    fun getAll(): LiveData<List<Sememe>>
+    fun getAllSememes(): LiveData<List<Sememe>>
 
     @Query("SELECT * FROM sememe_table WHERE learned = 1")
     fun getAllLearned(): LiveData<List<Sememe>>
 
     @Query("DELETE FROM sememe_table")
-    fun clear()
+    fun clearSememes()
+
+
+    @Query("SELECT * FROM profile_table")
+    fun getAllProfiles(): List<Profile>
 }

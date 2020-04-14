@@ -46,7 +46,7 @@ class StudentDatabaseTest {
     fun insertAndGetNight() {
         val sememe = Sememe()
         sleepDao.insert(sememe)
-        val tonight = sleepDao.get(0)
+        val tonight = sleepDao.getSememe(0)
         assertEquals(tonight?.stage, -1)
     }
 }

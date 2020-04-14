@@ -18,7 +18,7 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
 
     private suspend fun resetDatabase() {
         withContext(Dispatchers.IO) {
-            database.clear()
+            database.clearSememes()
 
             database.insert(Sememe("S0010000"))
             database.insert(Sememe("S0010001"))
