@@ -4,8 +4,8 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.example.thelanguagelion.database.Sememe
-import com.android.example.thelanguagelion.database.SememeDatabase
-import com.android.example.thelanguagelion.database.SememeDatabaseDao
+import com.android.example.thelanguagelion.database.StudentDatabase
+import com.android.example.thelanguagelion.database.StudentDatabaseDao
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
@@ -19,20 +19,20 @@ import java.io.IOException
  */
 
 @RunWith(AndroidJUnit4::class)
-class SememeDatabaseTest {
+class StudentDatabaseTest {
 
-    private lateinit var sleepDao: SememeDatabaseDao
-    private lateinit var db: SememeDatabase
+    private lateinit var sleepDao: StudentDatabaseDao
+    private lateinit var db: StudentDatabase
 
     @Before
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         // Using an in-memory database because the information stored here disappears when the process is killed
-        db = Room.inMemoryDatabaseBuilder(context, SememeDatabase::class.java)
+        db = Room.inMemoryDatabaseBuilder(context, StudentDatabase::class.java)
                 // Allowing main thread queries, just for testing
                 .allowMainThreadQueries()
                 .build()
-        sleepDao = db.sememeDatabaseDao
+        sleepDao = db.studentDatabaseDao
     }
 
     @After

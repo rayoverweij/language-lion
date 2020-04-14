@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.android.example.thelanguagelion.R
-import com.android.example.thelanguagelion.database.SememeDatabase
+import com.android.example.thelanguagelion.database.StudentDatabase
 import com.android.example.thelanguagelion.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -19,7 +19,7 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
         val application = requireNotNull(this.activity).application
-        val dataSource = SememeDatabase.getInstance(application).sememeDatabaseDao
+        val dataSource = StudentDatabase.getInstance(application).studentDatabaseDao
         viewModelFactory = SettingsViewModelFactory(dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SettingsViewModel::class.java)
 

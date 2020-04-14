@@ -3,10 +3,10 @@ package com.android.example.thelanguagelion.ui.settings
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.android.example.thelanguagelion.database.Sememe
-import com.android.example.thelanguagelion.database.SememeDatabaseDao
+import com.android.example.thelanguagelion.database.StudentDatabaseDao
 import kotlinx.coroutines.*
 
-class SettingsViewModel(val database: SememeDatabaseDao, application: Application) : AndroidViewModel(application) {
+class SettingsViewModel(val database: StudentDatabaseDao, application: Application) : AndroidViewModel(application) {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 

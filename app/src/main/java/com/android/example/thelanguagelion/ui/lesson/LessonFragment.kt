@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.android.example.thelanguagelion.R
-import com.android.example.thelanguagelion.database.SememeDatabase
+import com.android.example.thelanguagelion.database.StudentDatabase
 import com.android.example.thelanguagelion.databinding.FragmentLessonBinding
 
 
@@ -25,7 +25,7 @@ class LessonFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_lesson, container, false)
         val application = requireNotNull(this.activity).application
-        val dataSource = SememeDatabase.getInstance(application).sememeDatabaseDao
+        val dataSource = StudentDatabase.getInstance(application).studentDatabaseDao
         viewModelFactory = LessonViewModelFactory(dataSource, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LessonViewModel::class.java)
 

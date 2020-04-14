@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.android.example.thelanguagelion.database.SememeDatabaseDao
+import com.android.example.thelanguagelion.database.StudentDatabaseDao
 import com.android.example.thelanguagelion.getFileFromAssets
 import simplenlg.framework.NLGFactory
 import simplenlg.framework.SemElement
@@ -17,7 +17,7 @@ import simplenlg.semantics.Semanticon
 import simplenlg.lexicon.dutch.XMLLexicon as dutchXMLLexicon
 import simplenlg.lexicon.english.XMLLexicon as englishXMLLexicon
 
-class LessonViewModel(val database: SememeDatabaseDao, application: Application) : AndroidViewModel(application) {
+class LessonViewModel(val database: StudentDatabaseDao, application: Application) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
 
     private var semanticon : Semanticon

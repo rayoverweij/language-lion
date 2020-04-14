@@ -7,12 +7,18 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface SememeDatabaseDao {
+interface StudentDatabaseDao {
     @Insert
     fun insert(sememe: Sememe)
 
+    @Insert
+    fun insert(profile: Profile)
+
     @Update
     fun update(sememe: Sememe)
+
+    @Update
+    fun update(profile: Profile)
 
     @Query("SELECT * FROM sememe_table WHERE sememeId = :key")
     fun get(key: Int): Sememe?

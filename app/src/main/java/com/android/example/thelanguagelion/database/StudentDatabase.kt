@@ -4,22 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
-@Database(entities = [Sememe::class], version = 1, exportSchema = false)
-abstract class SememeDatabase : RoomDatabase() {
-    abstract val sememeDatabaseDao: SememeDatabaseDao
+@Database(entities = [Profile::class, Sememe::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
+abstract class StudentDatabase : RoomDatabase() {
+    abstract val studentDatabaseDao: StudentDatabaseDao
 
     companion object {
         @Volatile
-        private var INSTANCE: SememeDatabase? = null
+        private var INSTANCE: StudentDatabase? = null
 
-        fun getInstance(context: Context): SememeDatabase {
+        fun getInstance(context: Context): StudentDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
                 if (instance == null) {
                     instance = Room
-                        .databaseBuilder(context.applicationContext, SememeDatabase::class.java, "sememe_database")
+                        .databaseBuilder(context.applicationContext, StudentDatabase::class.java, "student_database")
+                        //.createFromAsset("semanticon.xml")
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
