@@ -25,7 +25,7 @@ interface StudentDatabaseDao {
     fun getSememe(key: Int): Sememe?
 
     @Query("SELECT * FROM sememe_table")
-    fun getAllSememes(): LiveData<List<Sememe>>
+    fun getAllSememes(): List<Sememe>
 
     @Query("SELECT * FROM sememe_table WHERE learned = 1")
     fun getAllLearned(): LiveData<List<Sememe>>
@@ -36,4 +36,7 @@ interface StudentDatabaseDao {
 
     @Query("SELECT * FROM profile_table")
     fun getAllProfiles(): List<Profile>
+
+    @Query("DELETE FROM profile_table")
+    fun clearProfiles()
 }

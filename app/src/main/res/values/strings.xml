@@ -18,4 +18,6 @@
     <string name="welcome_lead">Learn Dutch with the Language Lion! Enter your name to get started.</string>
     <string name="edit_name">Enter your name</string>
     <string name="button_welcome">Start</string>
+    <string name="settings_debug">Debug</string>
+    <string name="button_log">Log</string>
 </resources>
