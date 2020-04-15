@@ -12,6 +12,7 @@ import com.android.example.thelanguagelion.getFileFromAssets
 import kotlinx.coroutines.*
 import org.w3c.dom.Node
 import java.io.File
+import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
 
 class SettingsViewModel(val database: StudentDatabaseDao, application: Application) : AndroidViewModel(application) {
@@ -79,7 +80,16 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
                 Log.e("Data", ex.toString())
             }
 
-            database.insert(Profile(username = "Rayo"))
+            database.update(Sememe("S0021000", 1))
+            database.update(Sememe("S0021002", 1))
+
+            val primQueue = LinkedList<String>(
+                listOf("S0031001", "S0031002", "S0041000", "S0041001", "S0041002", "S0041003", "S0041004", "S0041005", "S0041006")
+            )
+            database.insert(Profile(
+                username = "Rayo",
+                primaryQueue = primQueue
+                ))
         }
     }
 

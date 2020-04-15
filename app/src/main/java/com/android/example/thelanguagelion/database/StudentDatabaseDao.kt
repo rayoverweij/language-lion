@@ -22,7 +22,7 @@ interface StudentDatabaseDao {
 
 
     @Query("SELECT * FROM sememe_table WHERE sememeId = :key")
-    fun getSememe(key: Int): Sememe?
+    fun getSememe(key: String): Sememe?
 
     @Query("SELECT * FROM sememe_table")
     fun getAllSememes(): List<Sememe>

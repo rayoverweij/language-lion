@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Profile::class, Sememe::class], version = 1, exportSchema = false)
+@Database(entities = [Profile::class, Sememe::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class StudentDatabase : RoomDatabase() {
     abstract val studentDatabaseDao: StudentDatabaseDao
@@ -22,7 +22,6 @@ abstract class StudentDatabase : RoomDatabase() {
                 if (instance == null) {
                     instance = Room
                         .databaseBuilder(context.applicationContext, StudentDatabase::class.java, "student_database")
-                        //.createFromAsset("semanticon.xml")
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance

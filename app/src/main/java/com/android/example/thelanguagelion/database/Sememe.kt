@@ -13,5 +13,5 @@ data class Sememe(
     var learned: Int = 0,
 
     @ColumnInfo(name = "stage")
-    var stage: Int = -1
+    var stage: Int = 0
 )

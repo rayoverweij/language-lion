@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity(tableName = "profile_table")
 data class Profile(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     var profileId: Int = 0,
 
     @ColumnInfo(name = "username")
