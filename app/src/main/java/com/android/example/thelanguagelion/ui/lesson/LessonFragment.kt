@@ -65,6 +65,7 @@ class LessonFragment : Fragment() {
                     binding.buttonCheck.visibility = View.VISIBLE
                     binding.buttonDontknow.visibility = View.VISIBLE
                     binding.buttonContinue.visibility = View.GONE
+                    binding.buttonContinue.setBackgroundColor(resources.getColor(R.color.colorPrimary))
                     binding.editAnswer.isEnabled = true
                     binding.editAnswer.inputType = InputType.TYPE_CLASS_TEXT
                     binding.editAnswer.isFocusable = true
@@ -82,7 +83,7 @@ class LessonFragment : Fragment() {
                     if(lessonStatus == LessonStatus.CORRECT) {
                         activity!!.window.statusBarColor = resources.getColor(R.color.colorCorrect)
                         binding.buttonContinue.setBackgroundColor(resources.getColor(R.color.colorCorrect))
-                    } else {
+                    } else if (lessonStatus == LessonStatus.INCORRECT) {
                         activity!!.window.statusBarColor = resources.getColor(R.color.colorMistake)
                         binding.buttonContinue.setBackgroundColor(resources.getColor(R.color.colorMistake))
                     }

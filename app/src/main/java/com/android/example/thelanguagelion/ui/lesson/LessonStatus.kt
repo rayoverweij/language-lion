@@ -1,5 +1,5 @@
 package com.android.example.thelanguagelion.ui.lesson
 
 enum class LessonStatus {
-    INPROGRESS, CORRECT, INCORRECT
+    INPROGRESS, CORRECT, INCORRECT, DONTKNOW
 }

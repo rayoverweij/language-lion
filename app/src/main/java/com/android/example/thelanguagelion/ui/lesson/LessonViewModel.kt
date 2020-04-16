@@ -229,12 +229,16 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         if(_answer.value == answer) {
             correctAnswer()
         } else {
-            incorrectAnswer()
+            primQueue.add(0, qHead)
+            _lessonStatus.value = LessonStatus.INCORRECT
+            _feedback.value = "Incorrect. The correct answer was \"${_answer.value}\""
         }
     }
 
     fun dontKnow() {
-        incorrectAnswer()
+        primQueue.add(0, qHead)
+        _lessonStatus.value = LessonStatus.DONTKNOW
+        _feedback.value = "The correct answer is \"${_answer.value}\""
     }
 
 
@@ -265,12 +269,6 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         _score.value = (score.value)?.plus(1)
         _lessonStatus.value = LessonStatus.CORRECT
         _feedback.value = positiveFeedback.random()
-    }
-
-    private fun incorrectAnswer() {
-        primQueue.add(0, qHead)
-        _lessonStatus.value = LessonStatus.INCORRECT
-        _feedback.value = "Incorrect. The correct answer was \"${_answer.value}\""
     }
 
 
