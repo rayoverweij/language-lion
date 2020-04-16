@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<semanticon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<semanticon>
 	<sem>
 		<id>S0010000</id>
 		<name>greeting_quick</name>
@@ -166,7 +166,7 @@
 		<id>S0021002</id>
 		<name>you_sub</name>
 		<english>you</english>
-		<dutch>jij,je</dutch>
+		<dutch>jij,je,u</dutch>
 		<categories>
 			<pers_pron />
 		</categories>
@@ -526,6 +526,7 @@
 		<dutch>brood</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -535,6 +536,7 @@
 		<dutch>kaas</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -544,6 +546,7 @@
 		<dutch>soep</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -553,6 +556,7 @@
 		<dutch>pasta</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -562,6 +566,7 @@
 		<dutch>ontbijt</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -571,6 +576,7 @@
 		<dutch>lunch</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -580,6 +586,7 @@
 		<dutch>avondeten</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -589,6 +596,7 @@
 		<dutch>kip</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -598,6 +606,7 @@
 		<dutch>fruit</dutch>
 		<categories>
 			<food_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -625,6 +634,7 @@
 		<dutch>water</dutch>
 		<categories>
 			<drink_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -634,6 +644,7 @@
 		<dutch>melk</dutch>
 		<categories>
 			<drink_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -643,6 +654,7 @@
 		<dutch>sap</dutch>
 		<categories>
 			<drink_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -652,6 +664,7 @@
 		<dutch>koffie</dutch>
 		<categories>
 			<drink_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -661,6 +674,7 @@
 		<dutch>thee</dutch>
 		<categories>
 			<drink_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -670,6 +684,7 @@
 		<dutch>bier</dutch>
 		<categories>
 			<drink_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>
@@ -679,6 +694,7 @@
 		<dutch>wijn</dutch>
 		<categories>
 			<drink_item />
+			<no_determiner />
 		</categories>
 	</sem>
 	<sem>

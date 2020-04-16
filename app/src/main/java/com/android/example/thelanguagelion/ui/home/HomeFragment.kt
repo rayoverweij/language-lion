@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.android.example.thelanguagelion.R
@@ -25,6 +23,9 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.buttonPractice.setOnClickListener {
+            binding.textHome.visibility = View.GONE
+            binding.buttonPractice.visibility = View.GONE
+            binding.loadingSpinner.visibility = View.VISIBLE
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNavigationLesson())
         }
 

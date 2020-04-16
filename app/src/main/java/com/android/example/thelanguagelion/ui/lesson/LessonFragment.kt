@@ -2,6 +2,7 @@ package com.android.example.thelanguagelion.ui.lesson
 
 import android.content.Context
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,22 +58,26 @@ class LessonFragment : Fragment() {
         }
 
         // Change the UI based on the status of the current question
-        viewModel.lessonStatus.observe(viewLifecycleOwner, Observer<LessonStatus> { lessonStatus ->
+        viewModel.lessonStatus.observe(viewLifecycleOwner, Observer { lessonStatus ->
             when (lessonStatus) {
                 LessonStatus.INPROGRESS -> {
                     activity!!.window.statusBarColor = resources.getColor(R.color.colorPrimaryDark)
                     binding.buttonCheck.visibility = View.VISIBLE
                     binding.buttonDontknow.visibility = View.VISIBLE
                     binding.buttonContinue.visibility = View.GONE
-                    //binding.editAnswer.isEnabled = true
-                    //binding.editAnswer.isFocusable = true
+                    binding.editAnswer.isEnabled = true
+                    binding.editAnswer.inputType = InputType.TYPE_CLASS_TEXT
+                    binding.editAnswer.isFocusable = true
+                    binding.editAnswer.isFocusableInTouchMode = true
+                    binding.editAnswer.text.clear()
                 }
                 else -> {
                     binding.buttonCheck.visibility = View.GONE
                     binding.buttonDontknow.visibility = View.GONE
                     binding.buttonContinue.visibility = View.VISIBLE
-                    //binding.editAnswer.isEnabled = false
-                    //binding.editAnswer.isFocusable = false
+                    binding.editAnswer.isEnabled = false
+                    binding.editAnswer.inputType = InputType.TYPE_NULL
+                    binding.editAnswer.isFocusable = false
 
                     if(lessonStatus == LessonStatus.CORRECT) {
                         activity!!.window.statusBarColor = resources.getColor(R.color.colorCorrect)
@@ -85,7 +90,7 @@ class LessonFragment : Fragment() {
             }
         })
 
-        viewModel.eventLessonFinish.observe(viewLifecycleOwner, Observer<Boolean> { hasFinished ->
+        viewModel.eventLessonFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
             if (hasFinished) lessonFinished()
         })
 
@@ -96,10 +101,14 @@ class LessonFragment : Fragment() {
         viewModel.onCheck(binding.editAnswer.text.toString())
         val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view!!.windowToken, 0)
-        binding.editAnswer.setText("")
+    }
+
+    private fun clearEditText() {
+        binding.editAnswer.text.clear()
     }
 
     private fun lessonFinished() {
+        activity!!.window.statusBarColor = resources.getColor(R.color.colorPrimaryDark)
         val action = LessonFragmentDirections.actionNavigationLessonToNavigationScore()
         action.score = viewModel.score.value ?: 0
         NavHostFragment.findNavController(this).navigate(action)
