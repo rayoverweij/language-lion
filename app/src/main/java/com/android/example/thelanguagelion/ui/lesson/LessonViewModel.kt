@@ -41,6 +41,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
     private lateinit var qHead: String
     private lateinit var currSem: SemElement
     private lateinit var currEntry: Sememe
+    private lateinit var alsoTested: MutableList<Sememe>
 
     private val timer: CountDownTimer
     private val positiveFeedback = listOf("Correct!", "Excellent!", "Good job!", "Well done!", "Nice!")
@@ -124,6 +125,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
             sememes = getAllSememes()
             primQueue = getPrimQueue()
             secQueue = getSecQueue()
+            alsoTested = mutableListOf()
             nextExercise()
             timer.start()
         }
@@ -139,11 +141,8 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         if(primQueue.isNotEmpty()) {
             uiScope.launch {
                 qHead = primQueue.pop()
-                Log.i("Lesson", qHead)
                 currSem = semanticon.getSemById(qHead)
-                Log.i("Lesson", currSem.toString())
                 currEntry = currEntry(qHead)!!
-                Log.i("Lesson", currEntry.stage.toString())
 
                 var dutchToEng = false
                 if(currEntry.stage > 4) {
@@ -158,6 +157,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
 
                 if(currSem.categories.contains("verb_transitive") || currSem.categories.contains("verb_intransitive")) {
                     val subj = getRandomSem("pers_pron")
+                    alsoTested.add(findSememeFromSemElement(subj)!!)
 
                     for (cs in currSem.dutch) {
                         for (pp in subj.dutch) {
@@ -179,6 +179,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
 
                 } else if (currSem.categories.contains("pers_pron")) {
                     val verb = getRandomSem("verb_intransitive")
+                    alsoTested.add(findSememeFromSemElement(verb)!!)
 
                     for(cs in currSem.dutch) {
                         for (v in verb.dutch) {
@@ -200,12 +201,14 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
 
                 } else if(currSem.categories.contains("food_item") || currSem.categories.contains("drink_item")) {
                     val subj = getRandomSem("pers_pron")
+                    alsoTested.add(findSememeFromSemElement(subj)!!)
 
                     val verb = if(currSem.categories.contains("food_item")) {
                         getRandomSem("verb_food")
                     } else {
                         getRandomSem("verb_drink")
                     }
+                    alsoTested.add(findSememeFromSemElement(verb)!!)
 
                     val r = Random()
                     val defArt = r.nextBoolean()
@@ -326,7 +329,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                 currEntry.learned = 1
                 primQueue.add(3, qHead)
             }
-            in 1 .. 6 -> {
+            in 1..6 -> {
                 currEntry.stage++
                 try {
                     primQueue.add(currEntry.stage + 2, qHead)
@@ -343,10 +346,31 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
             }
         }
 
+        for(entry in alsoTested) {
+            when(entry.stage) {
+                0 -> {
+                    entry.stage = 1
+                    entry.learned = 1
+                }
+                in 1..7 -> {
+                    entry.stage++
+                }
+                else -> {
+                    primQueue.remove(entry.sememeId)
+                    secQueue.remove(entry.sememeId)
+                    secQueue.add(entry.sememeId)
+                }
+            }
+        }
+
         uiScope.launch {
             updateSememe(currEntry.sememeId, currEntry.learned, currEntry.stage)
+            for(entry in alsoTested) {
+                updateSememe(entry.sememeId, entry.learned, entry.stage)
+            }
             updateProfile(0, primQueue, secQueue)
             sememes = getAllSememes()
+            alsoTested.clear()
         }
 
         _score.value = (score.value)?.plus(1)
@@ -367,6 +391,11 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         return learnedDataSems.random()
     }
 
+    private fun findSememeFromSemElement(semElement: SemElement): Sememe? {
+        return sememes.find {
+            it.sememeId == semElement.id
+        }
+    }
 
     private suspend fun getAllSememes(): List<Sememe> {
         return withContext(Dispatchers.IO) {
