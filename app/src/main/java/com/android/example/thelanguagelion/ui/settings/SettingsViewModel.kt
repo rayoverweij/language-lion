@@ -85,7 +85,8 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
             val primQueue = LinkedList(
                 listOf(
                     "S0030000", "S0031001", "S0031002", "S0041000", "S0041001", "S0021002", "S0041002", "S0041003",
-                    "S0041004", "S0041005", "S0041006"
+                    "S0041004", "S0041015", "S0041005", "S0041006", "S0021004", "S0021006", "S0041007", "S0041008",
+                    "S0041016", "S0041009", "S0041017", "S0041010", "S0031003"
                 )
             )
             database.insert(Profile(

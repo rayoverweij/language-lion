@@ -156,29 +156,73 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                 val englishClauses = mutableListOf<SPhraseSpec>()
 
                 if(currSem.categories.contains("verb_transitive") || currSem.categories.contains("verb_intransitive")) {
-                    val subj = getRandomSem("pers_pron")
+                    val pp = getRandomSem("pers_pron")!!
+                    val np = getRandomSem("noun")
+                    val r = Random()
+                    val subj: SemElement
+                    val isNoun: Boolean
+                    val defArt = r.nextBoolean()
+
+                    if(r.nextBoolean() || np == null) {
+                        subj = pp
+                        isNoun = false
+                    } else {
+                        subj = np
+                        isNoun = true
+                    }
+
                     alsoTested.add(findSememeFromSemElement(subj)!!)
 
                     for (cs in currSem.dutch) {
-                        for (pp in subj.dutch) {
+                        for (s in subj.dutch) {
                             val dutchClause = dutchFactory.createClause()
-                            dutchClause.setSubject(pp)
+                            if(isNoun) {
+                                val dutchSubj = dutchFactory.createNounPhrase(s)
+                                if (defArt) {
+                                    if (dutchLexicon.getWord(s).hasFeature("gender")) {
+                                        if (dutchLexicon.getWord(s).getFeature("gender")
+                                                .toString() == "NEUTER"
+                                        ) {
+                                            dutchSubj.setSpecifier("het")
+                                        } else {
+                                            dutchSubj.setSpecifier("de")
+                                        }
+                                    } else {
+                                        dutchSubj.setSpecifier("de")
+                                    }
+                                } else {
+                                    if (!subj.categories.contains("no_determiner")) {
+                                        dutchSubj.setSpecifier("een")
+                                    }
+                                }
+                                dutchClause.setSubject(dutchSubj)
+                            } else dutchClause.setSubject(s)
                             dutchClause.setVerb(cs)
                             dutchClauses.add(dutchClause)
                         }
                     }
 
                     for (cs in currSem.english) {
-                        for (pp in subj.english) {
+                        for (s in subj.english) {
                             val englishClause = englishFactory.createClause()
-                            englishClause.setSubject(pp)
+                            if(isNoun) {
+                                val englishSubj = englishFactory.createNounPhrase(s)
+                                if (defArt) {
+                                    englishSubj.setSpecifier("the")
+                                } else {
+                                    if (!subj.categories.contains("no_determiner")) {
+                                        englishSubj.setSpecifier("a")
+                                    }
+                                }
+                                englishClause.setSubject(englishSubj)
+                            } else englishClause.setSubject(s)
                             englishClause.setVerb(cs)
                             englishClauses.add(englishClause)
                         }
                     }
 
                 } else if (currSem.categories.contains("pers_pron")) {
-                    val verb = getRandomSem("verb_intransitive")
+                    val verb = getRandomSem("verb_intransitive")!!
                     alsoTested.add(findSememeFromSemElement(verb)!!)
 
                     for(cs in currSem.dutch) {
@@ -200,13 +244,13 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                     }
 
                 } else if(currSem.categories.contains("food_item") || currSem.categories.contains("drink_item")) {
-                    val subj = getRandomSem("pers_pron")
+                    val subj = getRandomSem("pers_pron")!!
                     alsoTested.add(findSememeFromSemElement(subj)!!)
 
                     val verb = if(currSem.categories.contains("food_item")) {
-                        getRandomSem("verb_food")
+                        getRandomSem("verb_food")!!
                     } else {
-                        getRandomSem("verb_drink")
+                        getRandomSem("verb_drink")!!
                     }
                     alsoTested.add(findSememeFromSemElement(verb)!!)
 
@@ -379,7 +423,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
     }
 
 
-    private fun getRandomSem(type: String): SemElement {
+    private fun getRandomSem(type: String): SemElement? {
         val dataSems = semanticon.getSemsInCategory(type)
         val learnedSems = sememes.filter { it.learned == 1}
         val learnedSemsIds = learnedSems.map {it.sememeId }
@@ -388,7 +432,11 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
             learnedSemsIds.contains(sem.id)
         }
 
-        return learnedDataSems.random()
+        return try {
+            learnedDataSems.random()
+        } catch (ex: Exception) {
+            null
+        }
     }
 
     private fun findSememeFromSemElement(semElement: SemElement): Sememe? {
