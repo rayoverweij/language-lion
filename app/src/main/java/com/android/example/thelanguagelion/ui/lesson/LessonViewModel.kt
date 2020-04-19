@@ -157,10 +157,10 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                 val englishClauses = mutableListOf<SPhraseSpec>()
 
                 if(currSem.categories.contains("verb_transitive") || currSem.categories.contains("verb_intransitive")) {
-                    val subj = getRandomPP()
+                    val subj = getRandomSem("pers_pron")
 
-                    for(cs in currSem.dutch) {
-                        for(pp in subj.dutch) {
+                    for (cs in currSem.dutch) {
+                        for (pp in subj.dutch) {
                             val dutchClause = dutchFactory.createClause()
                             dutchClause.setSubject(pp)
                             dutchClause.setVerb(cs)
@@ -168,8 +168,8 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                         }
                     }
 
-                    for(cs in currSem.english) {
-                        for(pp in subj.english) {
+                    for (cs in currSem.english) {
+                        for (pp in subj.english) {
                             val englishClause = englishFactory.createClause()
                             englishClause.setSubject(pp)
                             englishClause.setVerb(cs)
@@ -177,66 +177,90 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                         }
                     }
 
-                } else if(currSem.categories.contains("food_item") || currSem.categories.contains("drink_item")) {
-                    val subj = getRandomPP()
-                    val r = Random()
-                    val defArt = r.nextBoolean()
+                } else if (currSem.categories.contains("pers_pron")) {
+                    val verb = getRandomSem("verb_intransitive")
 
                     for(cs in currSem.dutch) {
-                        for(pp in subj.dutch) {
+                        for (v in verb.dutch) {
                             val dutchClause = dutchFactory.createClause()
-                            dutchClause.setSubject(pp)
-
-                            if(currSem.categories.contains("food_item")) {
-                                dutchClause.setVerb(semanticon.getSem("eat").dutch[0])
-                            } else {
-                                dutchClause.setVerb(semanticon.getSem("drink").dutch[0])
-                            }
-
-                            val dutchComplement = dutchFactory.createNounPhrase(cs)
-                            if(defArt) {
-                                if(dutchLexicon.getWord(cs).hasFeature("gender")) {
-                                    if(dutchLexicon.getWord(cs).getFeature("gender").toString() == "NEUTER") {
-                                        dutchComplement.setSpecifier("het")
-                                    } else {
-                                        dutchComplement.setSpecifier("de")
-                                    }
-                                } else {
-                                    dutchComplement.setSpecifier("de")
-                                }
-                            } else {
-                                if(!currSem.categories.contains("no_determiner")) {
-                                    dutchComplement.setSpecifier("een")
-                                }
-                            }
-                            dutchClause.setComplement(dutchComplement)
-
+                            dutchClause.setSubject(cs)
+                            dutchClause.setVerb(v)
                             dutchClauses.add(dutchClause)
                         }
                     }
 
                     for(cs in currSem.english) {
-                        for(pp in subj.english) {
+                        for (v in verb.english) {
                             val englishClause = englishFactory.createClause()
-                            englishClause.setSubject(pp)
-
-                            if(currSem.categories.contains("food_item")) {
-                                englishClause.setVerb(semanticon.getSem("eat").english[0])
-                            } else {
-                                englishClause.setVerb(semanticon.getSem("drink").english[0])
-                            }
-
-                            val englishComplement = englishFactory.createNounPhrase(cs)
-                            if(defArt) {
-                                englishComplement.setSpecifier("the")
-                            } else {
-                                if(!currSem.categories.contains("no_determiner")) {
-                                    englishComplement.setSpecifier("a")
-                                }
-                            }
-                            englishClause.setComplement(englishComplement)
-
+                            englishClause.setSubject(cs)
+                            englishClause.setVerb(v)
                             englishClauses.add(englishClause)
+                        }
+                    }
+
+                } else if(currSem.categories.contains("food_item") || currSem.categories.contains("drink_item")) {
+                    val subj = getRandomSem("pers_pron")
+
+                    val verb = if(currSem.categories.contains("food_item")) {
+                        getRandomSem("verb_food")
+                    } else {
+                        getRandomSem("verb_drink")
+                    }
+
+                    val r = Random()
+                    val defArt = r.nextBoolean()
+
+                    for(cs in currSem.dutch) {
+                        for(pp in subj.dutch) {
+                            for (v in verb.dutch) {
+                                val dutchClause = dutchFactory.createClause()
+                                dutchClause.setSubject(pp)
+                                dutchClause.setVerb(v)
+
+                                val dutchComplement = dutchFactory.createNounPhrase(cs)
+                                if (defArt) {
+                                    if (dutchLexicon.getWord(cs).hasFeature("gender")) {
+                                        if (dutchLexicon.getWord(cs).getFeature("gender")
+                                                .toString() == "NEUTER"
+                                        ) {
+                                            dutchComplement.setSpecifier("het")
+                                        } else {
+                                            dutchComplement.setSpecifier("de")
+                                        }
+                                    } else {
+                                        dutchComplement.setSpecifier("de")
+                                    }
+                                } else {
+                                    if (!currSem.categories.contains("no_determiner")) {
+                                        dutchComplement.setSpecifier("een")
+                                    }
+                                }
+                                dutchClause.setComplement(dutchComplement)
+
+                                dutchClauses.add(dutchClause)
+                            }
+                        }
+                    }
+
+                    for(cs in currSem.english) {
+                        for(pp in subj.english) {
+                            for(v in verb.english) {
+                                val englishClause = englishFactory.createClause()
+                                englishClause.setSubject(pp)
+                                englishClause.setVerb(v)
+
+                                val englishComplement = englishFactory.createNounPhrase(cs)
+                                if (defArt) {
+                                    englishComplement.setSpecifier("the")
+                                } else {
+                                    if (!currSem.categories.contains("no_determiner")) {
+                                        englishComplement.setSpecifier("a")
+                                    }
+                                }
+                                englishClause.setComplement(englishComplement)
+
+                                englishClauses.add(englishClause)
+                            }
                         }
                     }
                 }
@@ -264,8 +288,22 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
     }
 
     fun onCheck(answer: String) {
-        Log.i("Lesson", "Exercise: ${_answer.value} - answer: $answer - correct: ${_answer.value!!.contains(answer)}")
-        if(_answer.value!!.contains(answer)) {
+        val trimmedAnswers = _answer.value!!.map {
+            it
+                .replace(".", "")
+                .replace(",", "")
+                .toLowerCase(Locale.ROOT)
+        }
+
+        val trimmedAnswer = answer
+            .trim()
+            .replace(".", "")
+            .replace(",", "")
+            .replace("\\s+".toRegex(), " ")
+            .toLowerCase(Locale.ROOT)
+
+        Log.i("Lesson", "Exercise: $trimmedAnswers - answer: $trimmedAnswer - correct: ${trimmedAnswers.contains(trimmedAnswer)}")
+        if(trimmedAnswers.contains(trimmedAnswer)) {
             correctAnswer()
         } else {
             primQueue.add(0, qHead)
@@ -307,6 +345,8 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
 
         uiScope.launch {
             updateSememe(currEntry.sememeId, currEntry.learned, currEntry.stage)
+            updateProfile(0, primQueue, secQueue)
+            sememes = getAllSememes()
         }
 
         _score.value = (score.value)?.plus(1)
@@ -315,16 +355,16 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
     }
 
 
-    private fun getRandomPP(): SemElement {
-        val persPronouns = semanticon.getSemsInCategory("pers_pron")
+    private fun getRandomSem(type: String): SemElement {
+        val dataSems = semanticon.getSemsInCategory(type)
         val learnedSems = sememes.filter { it.learned == 1}
-        val learnedSemsIds = learnedSems.map { it.sememeId }
+        val learnedSemsIds = learnedSems.map {it.sememeId }
 
-        val learnedPPs = persPronouns.filter { pp ->
-            learnedSemsIds.contains(pp.id)
+        val learnedDataSems = dataSems.filter { sem ->
+            learnedSemsIds.contains(sem.id)
         }
 
-        return learnedPPs.random()
+        return learnedDataSems.random()
     }
 
 

@@ -81,10 +81,12 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
             }
 
             database.update(Sememe("S0021000", 1))
-            database.update(Sememe("S0021002", 1))
 
-            val primQueue = LinkedList<String>(
-                listOf("S0031001", "S0031002", "S0041000", "S0041001", "S0041002", "S0041003", "S0041004", "S0041005", "S0041006")
+            val primQueue = LinkedList(
+                listOf(
+                    "S0030000", "S0031001", "S0031002", "S0041000", "S0041001", "S0021002", "S0041002", "S0041003",
+                    "S0041004", "S0041005", "S0041006"
+                )
             )
             database.insert(Profile(
                 username = "Rayo",

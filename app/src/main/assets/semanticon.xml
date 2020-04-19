@@ -312,8 +312,10 @@
 		<english>be</english>
 		<dutch>zijn</dutch>
 		<categories>
-			<verb_transitive />
 			<verb_intransitive />
+			<verb_transitive />
+			<verb_food />
+			<verb_drink />
 		</categories>
 	</sem>
 	<sem>
@@ -322,7 +324,10 @@
 		<english>have</english>
 		<dutch>hebben</dutch>
 		<categories>
+			<verb_intransitive />
 			<verb_transitive />
+			<verb_food />
+			<verb_drink />
 		</categories>
 	</sem>
 	<sem>
@@ -342,6 +347,7 @@
 		<categories>
 			<verb_intransitive />
 			<verb_transitive />
+			<verb_food />
 		</categories>
 	</sem>
 	<sem>
@@ -352,6 +358,7 @@
 		<categories>
 			<verb_intransitive />
 			<verb_transitive />
+			<verb_drink />
 		</categories>
 	</sem>
 	<sem>
