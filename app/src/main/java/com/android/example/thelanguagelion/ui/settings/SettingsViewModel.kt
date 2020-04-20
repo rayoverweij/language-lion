@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.example.thelanguagelion.database.Profile
 import com.android.example.thelanguagelion.database.Sememe
+import com.android.example.thelanguagelion.database.Sentence
 import com.android.example.thelanguagelion.database.StudentDatabaseDao
 import com.android.example.thelanguagelion.getFileFromAssets
 import kotlinx.coroutines.*
@@ -22,6 +23,7 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private lateinit var sememes: List<Sememe>
+    private lateinit var sentences: List<Sentence>
     private lateinit var profiles: List<Profile>
 
 
@@ -34,8 +36,10 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
     fun logData() {
         uiScope.launch {
             sememes = getAllSememes()
+            sentences = getAllSentences()
             profiles = getAllProfiles()
             Log.i("Data", "Profiles: $profiles")
+            Log.i("Data", "Sentences: $sentences")
             Log.i("Data", "Sememes: $sememes")
         }
     }
@@ -46,15 +50,19 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
         withContext(Dispatchers.IO) {
             database.clearProfiles()
             database.clearSememes()
+            database.clearSentences()
 
             val semanticonPath = getFileFromAssets("semanticon.xml", context).absolutePath
-            val uri = File(semanticonPath).toURI()
+            val semanticonUri = File(semanticonPath).toURI()
+
+            val grammarPath = getFileFromAssets("grammar.xml", context).absolutePath
+            val grammarUri = File(grammarPath).toURI()
 
             try {
                 val factory = DocumentBuilderFactory.newInstance()
                 val builder = factory.newDocumentBuilder()
-                val doc = builder.parse(uri.toString())
 
+                var doc = builder.parse(semanticonUri.toString())
                 if(doc != null) {
                     val lexRoot = doc.documentElement
                     val semNodes = lexRoot.childNodes
@@ -76,16 +84,41 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
                         }
                     }
                 }
+
+                doc = builder.parse(grammarUri.toString())
+                if(doc != null) {
+                    val lexRoot = doc.documentElement
+                    val sentenceNodes = lexRoot.childNodes
+                    for(i in 0 .. sentenceNodes.length) {
+                        val sentenceNode = sentenceNodes.item(i)
+                        if(sentenceNode?.nodeType == Node.ELEMENT_NODE) {
+                            if(sentenceNode.nodeName != "sentence") continue
+                            val sentenceNodeAttrs = sentenceNode.childNodes
+                            for(j in 0 .. sentenceNodeAttrs.length) {
+                                val sentenceNodeAttr = sentenceNodeAttrs.item(j)
+                                if(sentenceNodeAttr?.nodeType == Node.ELEMENT_NODE) {
+                                    val attrName = sentenceNodeAttr.nodeName.trim()
+                                    if(attrName == "id") {
+                                        val value = sentenceNodeAttr.textContent
+                                        database.insert(Sentence(value))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
             } catch (ex: Exception) {
                 Log.e("Data", ex.toString())
             }
 
             database.update(Sememe("S0021000", 1))
+            database.update(Sentence("G001", 1))
 
             val primQueue = LinkedList(
                 listOf(
-                    "S0030000", "S0031001", "S0031002", "S0041000", "S0041001", "S0021002", "S0041002", "S0041003",
-                    "S0041004", "S0041015", "S0041005", "S0041006", "S0021004", "S0021006", "S0041007", "S0041008",
+                    "S0030000", "S0031001", "S0031002", "S0041000", "S0041001", "S0041015", "S0021002", "S0041002",
+                    "S0041003", "S0041004", "S0041005", "S0041006", "S0021004", "S0021006", "S0041007", "S0041008",
                     "S0041016", "S0041009", "S0041017", "S0041010", "S0031003"
                 )
             )
@@ -103,6 +136,13 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
         }
     }
 
+    private suspend fun getAllSentences(): List<Sentence> {
+        return withContext(Dispatchers.IO) {
+            val sentences = database.getAllSentences()
+            sentences
+        }
+    }
+
     private suspend fun getAllProfiles(): List<Profile> {
         return withContext(Dispatchers.IO) {
             val profiles = database.getAllProfiles()
@@ -114,6 +154,7 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
     init {
         uiScope.launch {
             sememes = getAllSememes()
+            sentences = getAllSentences()
             profiles = getAllProfiles()
         }
     }

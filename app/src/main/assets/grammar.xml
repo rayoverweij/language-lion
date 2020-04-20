@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grammar>
+    <sentence>
+        <id>G001</id>
+        <subject>pers_pron</subject>
+        <verb>verb_intransitive</verb>
+    </sentence>
+    <sentence>
+        <id>G002</id>
+        <subject>pers_pron</subject>
+        <verb>verb_food</verb>
+        <complement>food_item</complement>
+    </sentence>
+    <sentence>
+        <id>G003</id>
+        <subject>food_item</subject>
+        <verb>verb_intransitive</verb>
+    </sentence>
+    <sentence>
+        <id>G004</id>
+        <subject>pers_pron</subject>
+        <verb>verb_drink</verb>
+        <complement>drink_item</complement>
+    </sentence>
+    <sentence>
+        <id>G005</id>
+        <subject>drink_item</subject>
+        <verb>verb_intransitive</verb>
+    </sentence>
+</grammar>

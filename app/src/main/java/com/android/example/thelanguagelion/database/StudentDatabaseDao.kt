@@ -12,10 +12,17 @@ interface StudentDatabaseDao {
     fun insert(sememe: Sememe)
 
     @Insert
+    fun insert(sentence: Sentence)
+
+    @Insert
     fun insert(profile: Profile)
+
 
     @Update
     fun update(sememe: Sememe)
+
+    @Update
+    fun update(sentence: Sentence)
 
     @Update
     fun update(profile: Profile)
@@ -32,6 +39,16 @@ interface StudentDatabaseDao {
 
     @Query("DELETE FROM sememe_table")
     fun clearSememes()
+
+
+    @Query("SELECT * FROM sentence_table WHERE sentenceId = :key")
+    fun getSentence(key: String): Sentence?
+
+    @Query("SELECT * FROM sentence_table")
+    fun getAllSentences(): List<Sentence>
+
+    @Query("DELETE FROM sentence_table")
+    fun clearSentences()
 
 
     @Query("SELECT * FROM profile_table")

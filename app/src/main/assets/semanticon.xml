@@ -451,8 +451,7 @@
 		<english>man</english>
 		<dutch>man</dutch>
 		<categories>
-            <noun />
-			<person />
+            <person />
 		</categories>
 	</sem>
 	<sem>
@@ -461,8 +460,7 @@
 		<english>woman</english>
 		<dutch>vrouw</dutch>
 		<categories>
-            <noun />
-			<person />
+            <person />
 		</categories>
 	</sem>
 	<sem>
@@ -471,8 +469,7 @@
 		<english>boy</english>
 		<dutch>jongen</dutch>
 		<categories>
-            <noun />
-			<person />
+            <person />
 		</categories>
 	</sem>
 	<sem>
@@ -481,8 +478,7 @@
 		<english>girl</english>
 		<dutch>meisje</dutch>
 		<categories>
-            <noun />
-			<person />
+            <person />
 		</categories>
 	</sem>
 	<sem>
@@ -491,8 +487,7 @@
 		<english>child,kid</english>
 		<dutch>kind</dutch>
 		<categories>
-            <noun />
-			<person />
+            <person />
 		</categories>
 	</sem>
 	<sem>
@@ -501,8 +496,7 @@
 		<english>apple</english>
 		<dutch>appel</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 		</categories>
 	</sem>
 	<sem>
@@ -511,8 +505,7 @@
 		<english>banana</english>
 		<dutch>banaan</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 		</categories>
 	</sem>
 	<sem>
@@ -521,8 +514,7 @@
 		<english>strawberry</english>
 		<dutch>aardbei</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 		</categories>
 	</sem>
     <sem>
@@ -531,8 +523,7 @@
         <english>bread</english>
         <dutch>brood</dutch>
         <categories>
-            <noun />
-            <food_item />
+                     <food_item />
             <no_determiner />
         </categories>
     </sem>
@@ -542,8 +533,7 @@
 		<english>slice of bread</english>
 		<dutch>boterham</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 		</categories>
 	</sem>
 	<sem>
@@ -552,8 +542,7 @@
 		<english>cheese</english>
 		<dutch>kaas</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -563,8 +552,7 @@
 		<english>soup</english>
 		<dutch>soep</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -574,8 +562,7 @@
 		<english>pasta</english>
 		<dutch>pasta</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -585,8 +572,7 @@
 		<english>breakfast</english>
 		<dutch>ontbijt</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -596,8 +582,7 @@
 		<english>lunch</english>
 		<dutch>lunch</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -607,8 +592,7 @@
 		<english>dinner</english>
 		<dutch>avondeten</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -618,8 +602,7 @@
 		<english>chicken</english>
 		<dutch>kip</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -629,8 +612,7 @@
 		<english>fruit</english>
 		<dutch>fruit</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -640,8 +622,7 @@
 		<english>vegetable</english>
 		<dutch>groente</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 		</categories>
 	</sem>
 	<sem>
@@ -650,8 +631,7 @@
 		<english>egg</english>
 		<dutch>ei</dutch>
 		<categories>
-            <noun />
-			<food_item />
+            <food_item />
 		</categories>
 	</sem>
 	<sem>
@@ -660,8 +640,7 @@
 		<english>water</english>
 		<dutch>water</dutch>
 		<categories>
-            <noun />
-			<drink_item />
+            <drink_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -671,8 +650,7 @@
 		<english>milk</english>
 		<dutch>melk</dutch>
 		<categories>
-            <noun />
-			<drink_item />
+            <drink_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -682,8 +660,7 @@
 		<english>juice</english>
 		<dutch>sap</dutch>
 		<categories>
-            <noun />
-			<drink_item />
+            <drink_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -693,8 +670,7 @@
 		<english>coffee</english>
 		<dutch>koffie</dutch>
 		<categories>
-            <noun />
-			<drink_item />
+            <drink_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -704,8 +680,7 @@
 		<english>tea</english>
 		<dutch>thee</dutch>
 		<categories>
-            <noun />
-			<drink_item />
+            <drink_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -715,8 +690,7 @@
 		<english>beer</english>
 		<dutch>bier</dutch>
 		<categories>
-            <noun />
-			<drink_item />
+            <drink_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -726,8 +700,7 @@
 		<english>wine</english>
 		<dutch>wijn</dutch>
 		<categories>
-            <noun />
-			<drink_item />
+            <drink_item />
 			<no_determiner />
 		</categories>
 	</sem>
@@ -737,8 +710,7 @@
 		<english>menu</english>
 		<dutch>menu,kaart</dutch>
 		<categories>
-            <noun />
-			<readable />
+            <readable />
 		</categories>
 	</sem>
 	<sem>
@@ -747,8 +719,7 @@
 		<english>book</english>
 		<dutch>boek</dutch>
 		<categories>
-            <noun />
-			<readable />
+            <readable />
 		</categories>
 	</sem>
 	<sem>
@@ -757,8 +728,7 @@
 		<english>newspaper</english>
 		<dutch>krant</dutch>
 		<categories>
-            <noun />
-			<readable />
+            <readable />
 		</categories>
 	</sem>
 	<sem>
@@ -767,8 +737,7 @@
 		<english>The Netherlands</english>
 		<dutch>Nederland</dutch>
 		<categories>
-            <noun />
-			<country />
+            <country />
 		</categories>
 	</sem>
 	<sem>
@@ -777,8 +746,7 @@
 		<english>Belgium</english>
 		<dutch>België</dutch>
 		<categories>
-            <noun />
-			<country />
+            <country />
 		</categories>
 	</sem>
 	<sem>
