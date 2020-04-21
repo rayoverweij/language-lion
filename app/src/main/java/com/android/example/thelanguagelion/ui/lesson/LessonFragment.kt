@@ -27,7 +27,7 @@ class LessonFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_lesson, container, false)
         val application = requireNotNull(this.activity).application
         val dataSource = StudentDatabase.getInstance(application).studentDatabaseDao
-        viewModelFactory = LessonViewModelFactory(dataSource, application)
+        viewModelFactory = LessonViewModelFactory(dataSource, application, LessonFragmentArgs.fromBundle(arguments!!).time)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LessonViewModel::class.java)
 
         binding.lessonViewModel = viewModel

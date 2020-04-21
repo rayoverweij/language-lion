@@ -22,13 +22,23 @@ class HomeFragment : Fragment() {
         binding.homeViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.buttonPractice.setOnClickListener {
-            binding.textHome.visibility = View.GONE
-            binding.buttonPractice.visibility = View.GONE
-            binding.loadingSpinner.visibility = View.VISIBLE
-            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNavigationLesson())
-        }
+        binding.buttonPractice1min.setOnClickListener { practice(1) }
+        binding.buttonPractice5min.setOnClickListener { practice(5) }
+        binding.buttonPractice10min.setOnClickListener { practice(10) }
 
         return binding.root
+    }
+
+    private fun practice(time: Int) {
+        binding.textHome.visibility = View.GONE
+        binding.textPracticePicker.visibility = View.GONE
+        binding.buttonPractice1min.visibility = View.GONE
+        binding.buttonPractice5min.visibility = View.GONE
+        binding.buttonPractice10min.visibility = View.GONE
+        binding.loadingSpinner.visibility = View.VISIBLE
+
+        val action = HomeFragmentDirections.actionNavigationHomeToNavigationLesson()
+        action.time = time
+        findNavController().navigate(action)
     }
 }

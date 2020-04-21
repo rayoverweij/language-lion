@@ -28,7 +28,7 @@ import kotlin.reflect.KProperty1
 import simplenlg.lexicon.dutch.XMLLexicon as dutchXMLLexicon
 import simplenlg.lexicon.english.XMLLexicon as englishXMLLexicon
 
-class LessonViewModel(val database: StudentDatabaseDao, application: Application) : AndroidViewModel(application) {
+class LessonViewModel(val database: StudentDatabaseDao, application: Application, time: Int) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
 
     private var viewModelJob = Job()
@@ -54,6 +54,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
     private lateinit var currEntry: Sememe
     private lateinit var alsoTested: MutableList<Sememe>
 
+    private var timerTime: Long
     private val timer: CountDownTimer
     private val positiveFeedback = listOf("Correct!", "Excellent!", "Good job!", "Well done!", "Nice!")
 
@@ -181,7 +182,13 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         dutchFactory = NLGFactory(dutchLexicon)
         realiser = Realiser()
 
-        timer = object : CountDownTimer(FIVE_MINUTES, ONE_SECOND) {
+        timerTime = when(time) {
+            1 -> ONE_MINUTE
+            5 -> FIVE_MINUTES
+            else -> TEN_MINUTES
+        }
+
+        timer = object : CountDownTimer(timerTime, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
                 _currentTime.value = millisUntilFinished / ONE_SECOND
             }

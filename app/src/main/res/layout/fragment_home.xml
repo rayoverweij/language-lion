@@ -26,17 +26,17 @@
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/button_practice"
+            app:layout_constraintBottom_toTopOf="@+id/button_practice_5min"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button_practice"
+            android:id="@+id/button_practice_5min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_practice"
+            android:text="@string/button_practice_5min"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -55,5 +55,38 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_practice_1min"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/one_minute"
+            app:layout_constraintBottom_toBottomOf="@+id/button_practice_5min"
+            app:layout_constraintEnd_toStartOf="@+id/button_practice_5min"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_practice_5min" />
+
+        <Button
+            android:id="@+id/button_practice_10min"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_practice_10min"
+            app:layout_constraintBottom_toBottomOf="@+id/button_practice_5min"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_practice_5min"
+            app:layout_constraintTop_toTopOf="@+id/button_practice_5min" />
+
+        <TextView
+            android:id="@+id/text_practice_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@string/text_practice_picker"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintBottom_toTopOf="@+id/button_practice_5min"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -20,4 +20,8 @@
     <string name="button_welcome">Start</string>
     <string name="settings_debug">Debug</string>
     <string name="button_log">Log</string>
+    <string name="one_minute">1 min</string>
+    <string name="button_practice_5min">5 min</string>
+    <string name="button_practice_10min">10 min</string>
+    <string name="text_practice_picker">Choose your practice time:</string>
 </resources>

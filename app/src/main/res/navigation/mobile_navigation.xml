@@ -35,17 +35,23 @@
     <fragment
         android:id="@+id/navigation_lesson"
         android:name="com.android.example.thelanguagelion.ui.lesson.LessonFragment"
-        android:label="LessonFragment" >
+        android:label="LessonFragment"
+        tools:layout="@layout/fragment_lesson">
         <action
             android:id="@+id/action_navigation_lesson_to_navigation_score"
             app:destination="@id/navigation_score"
             app:launchSingleTop="true" />
+        <argument
+            android:name="time"
+            app:argType="integer"
+            android:defaultValue="5" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_score"
         android:name="com.android.example.thelanguagelion.ui.score.ScoreFragment"
-        android:label="ScoreFragment" >
+        android:label="ScoreFragment"
+        tools:layout="@layout/fragment_score">
         <action
             android:id="@+id/action_navigation_score_to_navigation_home"
             app:destination="@id/navigation_home" />

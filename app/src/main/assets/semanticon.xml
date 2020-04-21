@@ -523,7 +523,7 @@
         <english>bread</english>
         <dutch>brood</dutch>
         <categories>
-                     <food_item />
+            <food_item />
             <no_determiner />
         </categories>
     </sem>
