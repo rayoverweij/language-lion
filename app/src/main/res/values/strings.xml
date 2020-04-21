@@ -24,4 +24,6 @@
     <string name="button_practice_5min">5 min</string>
     <string name="button_practice_10min">10 min</string>
     <string name="text_practice_picker">Choose your practice time:</string>
+    <string name="dutch">Dutch</string>
+    <string name="english">English</string>
 </resources>

@@ -35,7 +35,7 @@ interface StudentDatabaseDao {
     fun getAllSememes(): List<Sememe>
 
     @Query("SELECT * FROM sememe_table WHERE learned = 1")
-    fun getAllLearned(): LiveData<List<Sememe>>
+    fun getAllLearned(): List<Sememe>
 
     @Query("DELETE FROM sememe_table")
     fun clearSememes()

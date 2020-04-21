@@ -20,7 +20,3 @@ fun getFileFromAssets(fileName: String, context: Context): File = File(context.c
             }
         }
     }
-
-
-// Create a ViewHolder for the Recycler View in Notebook
-class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)

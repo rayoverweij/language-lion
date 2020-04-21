@@ -25,17 +25,12 @@
 
         <TextView
             android:id="@+id/text_task"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
-            android:letterSpacing="0.3"
             android:text="@{lessonViewModel.task}"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_timer" />
+            app:layout_constraintTop_toBottomOf="@+id/text_timer"
+            style="@style/subheader" />
 
         <TextView
             android:id="@+id/text_exercise"
