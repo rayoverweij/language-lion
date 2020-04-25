@@ -2,29 +2,61 @@
 <grammar>
     <sentence>
         <id>G001</id>
-        <subject>pers_pron</subject>
+        <subject>person</subject>
         <verb>verb_intransitive</verb>
     </sentence>
     <sentence>
         <id>G002</id>
-        <subject>pers_pron</subject>
+        <subject>person</subject>
         <verb>verb_food</verb>
         <complement>food_item</complement>
     </sentence>
     <sentence>
         <id>G003</id>
-        <subject>food_item</subject>
-        <verb>verb_intransitive</verb>
-    </sentence>
-    <sentence>
-        <id>G004</id>
-        <subject>pers_pron</subject>
+        <subject>person</subject>
         <verb>verb_drink</verb>
         <complement>drink_item</complement>
     </sentence>
     <sentence>
+        <id>G004</id>
+        <subject>food_item</subject>
+        <verb>verb_copular</verb>
+        <complement>food_descriptor</complement>
+    </sentence>
+    <sentence>
         <id>G005</id>
         <subject>drink_item</subject>
-        <verb>verb_intransitive</verb>
+        <verb>verb_copular</verb>
+        <complement>drink_descriptor</complement>
+    </sentence>
+    <sentence>
+        <id>G006</id>
+        <subject>person</subject>
+        <verb>verb_readable</verb>
+        <complement>readable</complement>
+    </sentence>
+    <sentence>
+        <id>G007</id>
+        <subject>person</subject>
+        <verb>verb_copular</verb>
+        <complement>people_descriptor</complement>
+    </sentence>
+    <sentence>
+        <id>G008</id>
+        <subject>person</subject>
+        <verb>verb_copular</verb>
+        <complement>locale</complement>
+    </sentence>
+    <sentence>
+        <id>G009</id>
+        <subject>person</subject>
+        <verb>verb_language</verb>
+        <complement>locale</complement>
+    </sentence>
+    <sentence>
+        <id>G010</id>
+        <subject>person</subject>
+        <verb>verb_transitive</verb>
+        <complement>pers_pron_obj</complement>
     </sentence>
 </grammar>

@@ -10,11 +10,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.android.example.thelanguagelion.database.Profile
 import com.android.example.thelanguagelion.database.Sememe
-import com.android.example.thelanguagelion.database.Sentence as DataSentence
 import com.android.example.thelanguagelion.database.StudentDatabaseDao
 import com.android.example.thelanguagelion.getFileFromAssets
 import kotlinx.coroutines.*
 import org.w3c.dom.Node
+import simplenlg.features.Feature
+import simplenlg.features.NumberAgreement
+import simplenlg.framework.LexicalCategory
 import simplenlg.framework.NLGFactory
 import simplenlg.framework.SemElement
 import simplenlg.phrasespec.NPPhraseSpec
@@ -24,7 +26,7 @@ import simplenlg.semantics.Semanticon
 import java.io.File
 import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
-import kotlin.reflect.KProperty1
+import com.android.example.thelanguagelion.database.Sentence as DataSentence
 import simplenlg.lexicon.dutch.XMLLexicon as dutchXMLLexicon
 import simplenlg.lexicon.english.XMLLexicon as englishXMLLexicon
 
@@ -182,6 +184,9 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         dutchFactory = NLGFactory(dutchLexicon)
         realiser = Realiser()
 
+        Log.i("Lesson", dutchLexicon.hasWord("eten").toString())
+        Log.i("Lesson", dutchLexicon.hasWord("drinken").toString())
+
         timerTime = when(time) {
             1 -> ONE_MINUTE
             5 -> FIVE_MINUTES
@@ -220,8 +225,11 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         if(primQueue.isNotEmpty()) {
             uiScope.launch {
                 qHead = primQueue.pop()
+                Log.i("Lesson", qHead)
                 currSem = semanticon.getSemById(qHead)
                 currEntry = currEntry(qHead)!!
+
+                val r = Random()
 
                 var dutchToEng = false
                 if(currEntry.stage > 4) {
@@ -231,147 +239,69 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                     dutchToEng = true
                 }
 
-                val dutchClauses = mutableListOf<SPhraseSpec>()
-                val englishClauses = mutableListOf<SPhraseSpec>()
-
-                if(currSem.categories.contains("verb_intransitive")) {
-                    val template = getRandomSentence("verb_intransitive")!!
-                    val subject = getRandomSem(template.subject!!)!!
-                    alsoTested.add(findSememeFromSemElement(subject)!!)
-
-                    val defArt = Random().nextBoolean()
-                    val noDet = subject.categories.contains("no_determiner")
-
-                    for(cs in currSem.dutch) {
-                        for (s in subject.dutch) {
-                            val dutchClause = dutchFactory.createClause()
-
-                            if(template.subject != "pers_pron") {
-                                val dutchSubj = createDutchNounPhrase(s, defArt, noDet)
-                                dutchClause.setSubject(dutchSubj)
-                            } else dutchClause.setSubject(s)
-
-                            dutchClause.setVerb(cs)
-                            dutchClauses.add(dutchClause)
-                        }
-                    }
-
-                    for (cs in currSem.english) {
-                        for (s in subject.english) {
-                            val englishClause = englishFactory.createClause()
-
-                            if(template.subject != "pers_pron") {
-                                val englishSubj = createEnglishNounPhrase(s, defArt, noDet)
-                                englishClause.setSubject(englishSubj)
-                            } else englishClause.setSubject(s)
-
-                            englishClause.setVerb(cs)
-                            englishClauses.add(englishClause)
-                        }
-                    }
-                } else if (currSem.categories.contains("pers_pron")) {
-                    val template = getRandomSentence("pers_pron")!!
-
-                    val verb = getRandomSem(template.verb!!)!!
-                    alsoTested.add(findSememeFromSemElement(verb)!!)
-
-                    if (template.complement != null) {
-                        val compl = getRandomSem(template.complement!!)!!
-                        alsoTested.add(findSememeFromSemElement(compl)!!)
-                        val defArt = Random().nextBoolean()
-
-                        for (cs in currSem.dutch) {
-                            for (v in verb.dutch) {
-                                for (c in compl.dutch) {
-                                    val dutchComplement = createDutchNounPhrase(c, defArt, compl.categories.contains("no_determiner"))
-                                    val dutchClause = dutchFactory.createClause(cs, v, dutchComplement)
-                                    dutchClauses.add(dutchClause)
-                                }
-                            }
-                        }
-
-                        for (cs in currSem.english) {
-                            for (v in verb.english) {
-                                for (c in compl.english) {
-                                    val englishComplement = createEnglishNounPhrase(c, defArt, compl.categories.contains("no_determiner"))
-                                    val englishClause = englishFactory.createClause(cs, v, englishComplement)
-                                    englishClauses.add(englishClause)
-                                }
-                            }
-                        }
-
-                    } else {
-                        for (cs in currSem.dutch) {
-                            for (v in verb.dutch) {
-                                val dutchClause = dutchFactory.createClause(cs, v)
-                                dutchClauses.add(dutchClause)
-                            }
-                        }
-
-                        for (cs in currSem.english) {
-                            for (v in verb.english) {
-                                val englishClause = englishFactory.createClause(cs, v)
-                                englishClauses.add(englishClause)
-                            }
-                        }
-                    }
-                } else if(currSem.categories.contains("food_item") || currSem.categories.contains("drink_item")) {
-                    val template = if(currSem.categories.contains("food_item")) {
-                        getRandomSentence("food_item")!!
-                    } else {
-                        getRandomSentence("drink_item")!!
-                    }
-
-                    val defArt = Random().nextBoolean()
-                    val noDet = currSem.categories.contains("no_determiner")
-
-                    if(template.subject == "food_item" || template.subject == "drink_item") {
-                        val verb = getRandomSem(template.verb!!)!!
-                        alsoTested.add(findSememeFromSemElement(verb)!!)
-
-                        for(cs in currSem.dutch) {
-                            for (v in verb.dutch) {
-                                val dutchSubject = createDutchNounPhrase(cs, defArt, noDet)
-                                val dutchClause = dutchFactory.createClause(dutchSubject, v)
-                                dutchClauses.add(dutchClause)
-                            }
-                        }
-
-                        for(cs in currSem.english) {
-                            for(v in verb.english) {
-                                val englishSubject = createEnglishNounPhrase(cs, defArt, noDet)
-                                val englishClause = englishFactory.createClause(englishSubject, v)
-                                englishClauses.add(englishClause)
-                            }
-                        }
-                    } else if(template.complement == "food_item" || template.complement == "drink_item") {
-                        val subject = getRandomSem(template.subject!!)!!
-                        alsoTested.add(findSememeFromSemElement(subject)!!)
-
-                        val verb = getRandomSem(template.verb!!)!!
-                        alsoTested.add(findSememeFromSemElement(verb)!!)
-
-                        for(cs in currSem.dutch) {
-                            for(s in subject.dutch) {
-                                for(v in verb.dutch) {
-                                    val dutchComplement = createDutchNounPhrase(cs, defArt, noDet)
-                                    val dutchClause = dutchFactory.createClause(s, v, dutchComplement)
-                                    dutchClauses.add(dutchClause)
-                                }
-                            }
-                        }
-
-                        for(cs in currSem.english) {
-                            for(s in subject.english) {
-                                for(v in verb.english) {
-                                    val englishComplement = createEnglishNounPhrase(cs, defArt, noDet)
-                                    val englishClause = englishFactory.createClause(s, v, englishComplement)
-                                    englishClauses.add(englishClause)
-                                }
-                            }
-                        }
+                val templates = mutableListOf<Sentence>()
+                for (category in currSem.categories) {
+                    Log.i("Lesson", category)
+                    val t = getSentences(category)
+                    if(t != null) {
+                        templates.addAll(t)
                     }
                 }
+
+                val template = try {
+                    templates.random()
+                } catch (e: NoSuchElementException) {
+                    when {
+                        currSem.categories.contains("locale") -> grammarById["G008"]
+                        currSem.categories.contains("food_item") -> grammarById["G002"]
+                        currSem.categories.contains("drink_item") -> grammarById["G003"]
+                        currSem.categories.contains("food_descriptor") -> grammarById["G004"]
+                        currSem.categories.contains("readable") -> grammarById["G006"]
+                        else -> getRandomSentence()
+                    }
+                }!!
+
+                val subject = if(currSem.categories.contains(template.subject)) {
+                    currSem
+                } else {
+                    val s = getRandomSem(template.subject!!)!!
+                    alsoTested.add(findSememeFromSemElement(s)!!)
+                    s
+                }
+                val defArtS = r.nextBoolean()
+                val noDetS = subject.categories.contains("no_determiner")
+                val pluralZij = subject.id == "S0021012"
+
+                val verb = if(currSem.categories.contains(template.verb)) {
+                    currSem
+                } else {
+                    val v = getRandomSem(template.verb!!)!!
+                    alsoTested.add(findSememeFromSemElement(v)!!)
+                    v
+                }
+
+                val complement: SemElement?; val defArtC: Boolean?; val noDetC: Boolean?
+                if(template.complement != null) {
+                    complement = if(currSem.categories.contains(template.complement)) {
+                        currSem
+                    } else {
+                        val c = getRandomSem(template.complement!!)!!
+                        alsoTested.add(findSememeFromSemElement(c)!!)
+                        c
+                    }
+                    defArtC = r.nextBoolean()
+                    noDetC = complement.categories.contains("no_determiner")
+                } else {
+                    complement = null; defArtC = null; noDetC = null
+                }
+
+                val interjection = if(currSem.categories.contains("interjection")) currSem else null
+
+                val dutchClauses = buildClauses("Dutch", subject.dutch, verb.dutch, complement?.dutch, interjection?.dutch,
+                    defArtS, defArtC, noDetS, noDetC, pluralZij, dutchFactory)
+
+                val englishClauses = buildClauses("English", subject.english, verb.english, complement?.english, interjection?.english,
+                    defArtS, defArtC, noDetS, noDetC, pluralZij, englishFactory)
 
                 val dutchOutput = dutchClauses.map {
                     realiser.realiseSentence(it)
@@ -380,6 +310,8 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                 val englishOutput = englishClauses.map {
                     realiser.realiseSentence(it)
                 }
+
+                Log.i("Lesson", alsoTested.toString())
 
                 if(dutchToEng) {
                     _exercise.value = dutchOutput.random()
@@ -394,6 +326,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
 
         } else onLessonFinish()
     }
+
 
 
     fun onCheck(answer: String) {
@@ -426,6 +359,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         _lessonStatus.value = LessonStatus.DONTKNOW
         _feedback.value = "The correct answer is \"${_answer.value!!.random()}\""
     }
+
 
 
     private fun correctAnswer() {
@@ -476,12 +410,13 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
             }
 
             when(currEntry.sememeId) {
-                "S0030000" -> {
-                    updateSentence("G002", 1)
+                "S0041000" -> updateSentence("G002", 1)
+                "S0041015" -> updateSentence("G003", 1)
+                "S0050000" -> {
                     updateSentence("G004", 1)
+                    updateSentence("G005", 1)
+                    updateSentence("G007", 1)
                 }
-                "S0041000" -> updateSentence("G003", 1)
-                "S0041015" -> updateSentence("G005", 1)
             }
 
             updateProfile(0, primQueue, secQueue)
@@ -494,6 +429,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         _lessonStatus.value = LessonStatus.CORRECT
         _feedback.value = positiveFeedback.random()
     }
+
 
 
     private fun getRandomSem(type: String): SemElement? {
@@ -512,16 +448,29 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         }
     }
 
-    private fun getRandomSentence(type: String): Sentence? {
-        val dataSentences = grammarByType[type]!!
+    private fun getRandomSentence(): Sentence? {
         val learnedSentences = sentences.filter { it.learned == 1 }
         val learnedSentencesIds = learnedSentences.map { it.sentenceId }
 
-        val learnedDataSentences = dataSentences.filter { sentence ->
+        val learnedDataSentences = grammar.filter { sentence ->
             learnedSentencesIds.contains(sentence.id)
         }
 
         return learnedDataSentences.random()
+    }
+
+    private fun getSentences(type: String): List<Sentence>? {
+        Log.i("Lesson", "getting sentences of type $type")
+        val dataSentences = grammarByType[type] ?: return null
+        val learnedSentences = sentences.filter { it.learned == 1 }
+        if(learnedSentences.isEmpty()) {
+            return null
+        }
+        val learnedSentencesIds = learnedSentences.map { it.sentenceId }
+
+        return dataSentences.filter { sentence ->
+            learnedSentencesIds.contains(sentence.id)
+        }
     }
 
 
@@ -534,33 +483,105 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
 
 
 
-    private fun createDutchNounPhrase(noun: String, defArt: Boolean, noDet: Boolean): NPPhraseSpec {
-        val dutchNP = dutchFactory.createNounPhrase(noun)
-        if (defArt) {
-            if (dutchLexicon.getWord(noun).hasFeature("gender")) {
-                if (dutchLexicon.getWord(noun).getFeature("gender").toString() == "NEUTER") {
-                    dutchNP.setSpecifier("het")
+    private fun buildClauses(language: String, subject: List<String>, verb: List<String>, complement: List<String>?, interjection: List<String>?,
+                             defArtS: Boolean, defArtC: Boolean?, noDetS: Boolean, noDetC: Boolean?, pluralZij: Boolean, factory: NLGFactory)
+            : List<SPhraseSpec> {
+        val clauses = mutableListOf<SPhraseSpec>()
+
+        for (s in subject) {
+            val builtSubject = if(language == "Dutch") {
+                createDutchNounPhrase(s, defArtS, noDetS)
+            } else {
+                createEnglishNounPhrase(s, defArtS, noDetS)
+            }
+
+            for (v in verb) {
+                if(complement == null && interjection == null) {
+                    val clause = factory.createClause()
+                    clause.setSubject(builtSubject)
+                    clause.setVerb(v)
+                    if(pluralZij) clause.setFeature(Feature.NUMBER, NumberAgreement.PLURAL)
+                    clauses.add(clause)
+                } else if(complement != null && interjection == null) {
+                    for (c in complement) {
+                        val clause = factory.createClause()
+
+                        clause.setSubject(builtSubject)
+                        clause.setVerb(v)
+                        if(pluralZij) clause.setFeature(Feature.NUMBER, NumberAgreement.PLURAL)
+
+                        val builtComplement = if(language == "Dutch") {
+                            createDutchNounPhrase(c, defArtC!!, noDetC!!)
+                        } else createEnglishNounPhrase(c, defArtC!!, noDetC!!)
+                        clause.setComplement(builtComplement)
+
+                        clauses.add(clause)
+                    }
+                } else if(complement == null && interjection != null) {
+                    for(i in interjection) {
+                        val clause = factory.createClause()
+                        clause.setSubject(builtSubject)
+                        clause.setVerb(v)
+                        if(pluralZij) clause.setFeature(Feature.NUMBER, NumberAgreement.PLURAL)
+                        clause.addFrontModifier(i)
+                        clauses.add(clause)
+                    }
+                } else {
+                    for(c in complement!!) {
+                        val builtComplement = if(language == "Dutch") {
+                            createDutchNounPhrase(c, defArtC!!, noDetC!!)
+                        } else createEnglishNounPhrase(c, defArtC!!, noDetC!!)
+
+                        for(i in interjection!!) {
+                            val clause = factory.createClause()
+                            clause.setSubject(builtSubject)
+                            clause.setVerb(v)
+                            if(pluralZij) clause.setFeature(Feature.NUMBER, NumberAgreement.PLURAL)
+                            clause.setComplement(builtComplement)
+                            clause.addFrontModifier(i)
+                            clauses.add(clause)
+                        }
+                    }
+                }
+            }
+        }
+
+        return clauses
+    }
+
+    private fun createDutchNounPhrase(head: String, defArt: Boolean, noDet: Boolean): NPPhraseSpec {
+        val dutchNP = dutchFactory.createNounPhrase(head)
+        Log.i("Lesson", "${dutchLexicon.getWord(head)}")
+        if(dutchLexicon.getWord(head).category == LexicalCategory.NOUN) {
+            if (defArt) {
+                if (dutchLexicon.getWord(head).hasFeature("gender")) {
+                    if (dutchLexicon.getWord(head).getFeature("gender").toString() == "NEUTER") {
+                        dutchNP.setSpecifier("het")
+                    } else {
+                        dutchNP.setSpecifier("de")
+                    }
                 } else {
                     dutchNP.setSpecifier("de")
                 }
             } else {
-                dutchNP.setSpecifier("de")
-            }
-        } else {
-            if (!noDet) {
-                dutchNP.setSpecifier("een")
+                if (!noDet) {
+                    dutchNP.setSpecifier("een")
+                }
             }
         }
         return dutchNP
     }
 
-    private fun createEnglishNounPhrase(noun: String, defArt: Boolean, noDet: Boolean): NPPhraseSpec {
-        val englishNP = englishFactory.createNounPhrase(noun)
-        if (defArt) {
-            englishNP.setSpecifier("the")
-        } else {
-            if (!noDet) {
-                englishNP.setSpecifier("a")
+    private fun createEnglishNounPhrase(head: String, defArt: Boolean, noDet: Boolean): NPPhraseSpec {
+        Log.i("Lesson", "${englishLexicon.getWord(head)}")
+        val englishNP = englishFactory.createNounPhrase(head)
+        if(englishLexicon.getWord(head).category == LexicalCategory.NOUN) {
+            if (defArt) {
+                englishNP.setSpecifier("the")
+            } else {
+                if (!noDet) {
+                    englishNP.setSpecifier("a")
+                }
             }
         }
         return englishNP

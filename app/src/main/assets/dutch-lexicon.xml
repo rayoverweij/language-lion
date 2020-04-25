@@ -2062,7 +2062,6 @@
     <category>noun</category>
     <plural>mannen</plural>
     <gender>masculine</gender>
-    <gender>neuter</gender>
   </word>
   <word>
     <base>universiteit</base>
@@ -20191,7 +20190,7 @@
   <word>
     <base>lunch</base>
     <category>noun</category>
-    <plural>lunchen</plural>
+    <plural>lunches</plural>
     <gender>masculine</gender>
   </word>
   <word>
@@ -35931,6 +35930,12 @@
     <category>noun</category>
     <plural>meiden</plural>
     <gender>feminine</gender>
+  </word>
+  <word>
+   <base>meisje</base>
+   <category>noun</category>
+   <plural>meisjes</plural>
+   <gender>neuter</gender>
   </word>
   <word>
     <base>junior</base>
@@ -55666,5 +55671,13 @@
     <category>noun</category>
     <plural>peggen</plural>
     <gender>common</gender>
+  </word>
+  <word>
+    <base>Nederlands</base>
+    <category>adjective</category>
+  </word>
+  <word>
+    <base>Engels</base>
+    <category>adjective</category>
   </word>
   </lexicon>

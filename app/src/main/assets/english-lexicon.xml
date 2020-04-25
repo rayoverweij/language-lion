@@ -32081,6 +32081,11 @@
   <id>E0058106</id>
 </word>
 <word>
+  <base>strawberry</base>
+  <category>noun</category>
+  <id>E0058107</id>
+</word>
+<word>
   <base>stream</base>
   <category>noun</category>
   <id>E0058116</id>
@@ -37648,5 +37653,15 @@
   <base>zone</base>
   <category>noun</category>
   <id>E0065982</id>
+</word>
+<word>
+  <base>Dutch</base>
+  <category>adjective</category>
+  <id>E0070000</id>
+</word>
+<word>
+  <base>English</base>
+  <category>adjective</category>
+  <id>E0070001</id>
 </word>
 </lexicon>

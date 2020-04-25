@@ -3,8 +3,6 @@ package com.android.example.thelanguagelion.ui.settings
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.android.example.thelanguagelion.database.Profile
 import com.android.example.thelanguagelion.database.Sememe
 import com.android.example.thelanguagelion.database.Sentence
@@ -112,14 +110,18 @@ class SettingsViewModel(val database: StudentDatabaseDao, application: Applicati
                 Log.e("Data", ex.toString())
             }
 
+            database.update(Sememe("S0020000", 1))
+            database.update(Sememe("S0020001", 1))
             database.update(Sememe("S0021000", 1))
             database.update(Sentence("G001", 1))
 
             val primQueue = LinkedList(
                 listOf(
                     "S0030000", "S0031001", "S0031002", "S0041000", "S0041001", "S0041015", "S0021002", "S0041002",
-                    "S0041003", "S0041004", "S0041005", "S0041006", "S0021004", "S0021006", "S0041007", "S0041008",
-                    "S0041016", "S0041009", "S0041017", "S0041010", "S0031003"
+                    "S0041003", "S0050000", "S0041005", "S0050001", "S0041006", "S0021004", "S0021006", "S0041007",
+                    "S0041008", "S0041016", "S0041009", "S0041017", "S0041010", "S0031003", "S0041011", "S0041018",
+                    "S0010000", "S0041012", "S0041019", "S0021009", "S0041013", "S0041020", "S0050002", "S0041014",
+                    "S0041021"
                 )
             )
             database.insert(Profile(
