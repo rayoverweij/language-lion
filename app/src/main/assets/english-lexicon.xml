@@ -15681,10 +15681,10 @@
   <sentence_modifier/>
   <verb_modifier/>
 </word>
-<word>
-  <base>her</base>
-  <category>determiner</category>
-</word>
+<!--<word>-->
+<!--  <base>her</base>-->
+<!--  <category>determiner</category>-->
+<!--</word>-->
 <word>
   <base>her</base>
   <category>pronoun</category>
@@ -15724,11 +15724,11 @@
   <id>E0031437</id>
   <nonCount/>
 </word>
-<word>
-  <base>hers</base>
-  <category>pronoun</category>
-  <id>E0031460</id>
-</word>
+<!--<word>-->
+<!--  <base>hers</base>-->
+<!--  <category>pronoun</category>-->
+<!--  <id>E0031460</id>-->
+<!--</word>-->
 <word>
   <base>herself</base>
   <category>pronoun</category>
@@ -37664,4 +37664,9 @@
   <category>adjective</category>
   <id>E0070001</id>
 </word>
+  <word>
+    <base>pasta</base>
+    <category>noun</category>
+    <id>E0070002</id>
+  </word>
 </lexicon>

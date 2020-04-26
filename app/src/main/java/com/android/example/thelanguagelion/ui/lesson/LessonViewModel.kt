@@ -252,11 +252,12 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
                     templates.random()
                 } catch (e: NoSuchElementException) {
                     when {
-                        currSem.categories.contains("locale") -> grammarById["G008"]
                         currSem.categories.contains("food_item") -> grammarById["G002"]
                         currSem.categories.contains("drink_item") -> grammarById["G003"]
                         currSem.categories.contains("food_descriptor") -> grammarById["G004"]
                         currSem.categories.contains("readable") -> grammarById["G006"]
+                        currSem.categories.contains("locale") -> grammarById["G008"]
+                        currSem.categories.contains("pers_pron_obj") -> grammarById["G010"]
                         else -> getRandomSentence()
                     }
                 }!!
@@ -410,12 +411,18 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
             }
 
             when(currEntry.sememeId) {
+                "S0021001" -> updateSentence("G010", 1)
                 "S0041000" -> updateSentence("G002", 1)
                 "S0041015" -> updateSentence("G003", 1)
+                "S0042000" -> updateSentence("G006", 1)
                 "S0050000" -> {
                     updateSentence("G004", 1)
                     updateSentence("G005", 1)
                     updateSentence("G007", 1)
+                }
+                "S0051000" -> {
+                    updateSentence("G008", 1)
+                    updateSentence("G009", 1)
                 }
             }
 
@@ -496,6 +503,7 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
             }
 
             for (v in verb) {
+                Log.i("Lesson", "${dutchLexicon.getWord(v)}")
                 if(complement == null && interjection == null) {
                     val clause = factory.createClause()
                     clause.setSubject(builtSubject)

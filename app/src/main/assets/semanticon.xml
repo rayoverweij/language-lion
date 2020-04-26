@@ -327,7 +327,7 @@
         <id>S0021013</id>
         <name>them</name>
         <english>them</english>
-        <dutch>hen,hun</dutch>
+        <dutch>hen</dutch>
         <categories>
             <pers_pron_obj />
         </categories>
@@ -362,12 +362,12 @@
         <english>also,as well</english>
         <dutch>or</dutch>
     </sem>-->
-    <sem>
+    <!--<sem>
         <id>S0024000</id>
         <name>in</name>
         <english>in</english>
         <dutch>in</dutch>
-    </sem>
+    </sem>-->
     <sem>
         <id>S0030000</id>
         <name>be</name>
@@ -684,7 +684,6 @@
         <dutch>kip</dutch>
         <categories>
             <food_item />
-            <no_determiner />
         </categories>
     </sem>
     <sem>

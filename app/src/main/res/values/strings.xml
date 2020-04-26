@@ -26,4 +26,6 @@
     <string name="text_practice_picker">Choose your practice time:</string>
     <string name="dutch">Dutch</string>
     <string name="english">English</string>
+    <string name="profile_one">Profile 1</string>
+    <string name="profile_two">Profile 2</string>
 </resources>

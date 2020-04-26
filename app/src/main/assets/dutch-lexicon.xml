@@ -12,6 +12,17 @@
     <past>kwam</past>
   </word>
   <word>
+    <base>zien</base>
+    <category>verb</category>
+    <present1s>zie</present1s>
+    <present2s>ziet</present2s>
+    <present3s>ziet</present3s>
+    <present1p>zien</present1p>
+    <present2p>zien</present2p>
+    <present3p>zien</present3p>
+    <past>zag</past>
+  </word>
+  <word>
     <base>zijn</base>
     <category>verb</category>
     <id>E0012152</id>
