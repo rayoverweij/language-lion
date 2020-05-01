@@ -6,8 +6,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.android.example.thelanguagelion.database.Sememe
 import com.android.example.thelanguagelion.database.StudentDatabase
 import com.android.example.thelanguagelion.database.StudentDatabaseDao
-import org.junit.Assert.assertEquals
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -46,7 +46,7 @@ class StudentDatabaseTest {
     fun insertAndGetNight() {
         val sememe = Sememe()
         sleepDao.insert(sememe)
-        val tonight = sleepDao.getSememe(0)
+        val tonight = sleepDao.getSememe("0")
         assertEquals(tonight?.stage, -1)
     }
 }

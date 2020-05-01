@@ -12,6 +12,7 @@ import com.android.example.thelanguagelion.database.Profile
 import com.android.example.thelanguagelion.database.Sememe
 import com.android.example.thelanguagelion.database.StudentDatabaseDao
 import com.android.example.thelanguagelion.getFileFromAssets
+import com.android.example.thelanguagelion.resetDatabase
 import kotlinx.coroutines.*
 import org.w3c.dom.Node
 import simplenlg.features.Feature
@@ -205,6 +206,12 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         }
 
         uiScope.launch {
+            try {
+                getProfile()
+            } catch (e: Exception) {
+                resetDatabase(database, context)
+            }
+
             sememes = getAllSememes()
             sentences = getAllSentences()
             primQueue = getPrimQueue()
@@ -608,6 +615,12 @@ class LessonViewModel(val database: StudentDatabaseDao, application: Application
         return withContext(Dispatchers.IO) {
             val sentences = database.getAllSentences()
             sentences
+        }
+    }
+
+    private suspend fun getProfile(): Profile {
+        return withContext(Dispatchers.IO) {
+            database.getAllProfiles()[0]
         }
     }
 
