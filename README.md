@@ -3,7 +3,7 @@
 
 The Language Lion is an Android app that teaches Dutch. It assumes no prior knowledge of the language&mdash;just open the app, choose for how long you want to practice, and for the duration of that time the app will automatically generate exercises based on your progress.
 
-This application was built in partial fulfilment of an undergraduate Senior Project for Bard College. For detailed information on this project, including its original vision, discussions on the linguistic philosophy behind it, and notes on testing and evaluation, read the official [research paper](https://www.rayo.dev/docs/Verweij2020-TheLanguageLion.pdf).
+This application was built in partial fulfilment of an undergraduate Senior Project for Bard College. For detailed information on this project, including its original vision, discussions on the linguistic philosophy behind it, and notes on testing and evaluation, read the official [research paper](https://rayo.dev/docs/Verweij2020-TheLanguageLion.pdf).
 
 ## Getting started
 To install the app, download the APK from the Releases tab and install it on your device. The Language Lion is compatible with phones running Android 6.0+.
